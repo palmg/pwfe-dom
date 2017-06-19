@@ -3,41 +3,8 @@
  */
 import React from 'react'
 import {isServerEvn} from '../../util'
+import {registerImgHandle} from './setIcon'
 import noneImg from '../../res/icon/empty.png' //默认未显示的图片
-
-let __img, handleList = []
-
-const registerImgHandle = (id, callback) => {
-    __img ? callback(__img[id]) : handleList.push({id, callback})
-}
-
-const executeHandle = ()=> {
-    handleList.map(i=>i.callback(__img[i.id]));
-    handleList = null;
-}
-
-//解决服务器端没有ensure方法的问题，直接用源生的require替换
-/*if (typeof require.ensure !== 'function') {
-    require.ensure = function(dependencies, callback) {
-        callback(require)
-    }
-}*/
-
-/*require.ensure([], require => {
-    __img = require("../../../res/img")
-    executeHandle()
-}, 'res')*/
-
-/**
- * 需要在外部实现图片资源的加载方法。资源文件的结构为
- * {
- *     imgKey:'img base64 data'
- * }
- */
-export const setImgFile = (img) =>{
-    __img = img
-    executeHandle()
-}
 
 /**
  * 标签组件。
