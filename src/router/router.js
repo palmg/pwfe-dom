@@ -4,7 +4,7 @@
  */
 
 import React from 'react'
-import {isServerEvn, getComponentName} from './util'
+import {isServerEvn, getComponentName} from '../../util'
 import createBrowserHistory from 'history/createBrowserHistory'
 import createHashHistory from 'history/createHashHistory'
 import {Router, Route, Link, Redirect, StaticRouter, withRouter} from 'react-router-dom'//路由
