@@ -3,8 +3,7 @@
  */
 import React from 'react'
 import {isServerEvn} from '../../util'
-import {registerImgHandle, getImg} from './setIcon'
-import noneImg from '../../res/icon/empty.png' //默认未显示的图片
+import {registerImgHandle, getImg, getDefImg} from './setIcon'
 
 /**
  * 标签组件。
@@ -74,7 +73,7 @@ class Icon extends React.Component {
 
     render() {
         const props = Object.assign({}, this.props), {img} = this.state;
-        props.src = img ? img : noneImg
+        props.src = img ? img : getDefImg()
         this.id && (props.id = this.id)
         return (
             <img {...props}/>

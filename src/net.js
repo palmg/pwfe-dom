@@ -1,21 +1,9 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.post = exports.get = exports.net = undefined;
-
-var _util = require('./util');
-
-var _serverNetwork = require('./lib/net/serverNetwork');
-
-var _serverNetwork2 = _interopRequireDefault(_serverNetwork);
-
-var _browserNetwork = require('./lib/net/browserNetwork');
-
-var _browserNetwork2 = _interopRequireDefault(_browserNetwork);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+/**
+ * Created by chkui on 2017/5/22.
+ */
+import {isServerEvn} from './util'
+import serverNetwork from './lib/net/serverNetwork'
+import browserNetwork from './lib/net/browserNetwork'
 
 /**
  * 网络服务工具
@@ -28,8 +16,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *  }
  * @returns {network}
  */
-var net = function net(params) {
-    return (0, _util.isServerEvn)() ? new _serverNetwork2.default(params) : new _browserNetwork2.default(params);
+const net = (params)=> {
+    return isServerEvn() ? new serverNetwork(params) : new browserNetwork(params);
 };
 
 /**
@@ -38,10 +26,7 @@ var net = function net(params) {
  * @param query: 服务器调用的query admin?a=a&b=b等价于{a:'a',b:'b'}
  * @returns {network}
  */
-/**
- * Created by chkui on 2017/5/22.
- */
-var get = function get(url, query) {
+const get = (url, query) => {
     return net({
         url: url,
         query: query
@@ -54,7 +39,7 @@ var get = function get(url, query) {
  * @param data: 要传递的数据
  * @returns {network}
  */
-var post = function post(url, data) {
+const post = (url, data) => {
     return net({
         url: url,
         method: 'POST',
@@ -62,6 +47,4 @@ var post = function post(url, data) {
     }).send();
 };
 
-exports.net = net;
-exports.get = get;
-exports.post = post;
+export {net, get, post}

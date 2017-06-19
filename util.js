@@ -1,15 +1,26 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 /**
  * Created by chkui on 2017/6/19.
  * 基础工具模块
  */
-
 
 /**
  * 获取组件的显示名称
  * @param WrappedComponent 包装组件
  * @returns {*|string}
  */
-export const getComponentName = (WrappedComponent) => {
+var getComponentName = exports.getComponentName = function getComponentName(WrappedComponent) {
     return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 };
 
@@ -18,9 +29,9 @@ export const getComponentName = (WrappedComponent) => {
  * 1）浏览器和服务器通用
  * @return {boolean}。true: 浏览器环境，false：服务器环境
  */
-export const isServerEvn = () =>{
-    return (typeof global == 'object') && (global.global === global);
-}
+var isServerEvn = exports.isServerEvn = function isServerEvn() {
+    return (typeof global === 'undefined' ? 'undefined' : _typeof(global)) == 'object' && global.global === global;
+};
 
 /**
  * 基础类异步管理回调类
@@ -32,39 +43,59 @@ export const isServerEvn = () =>{
  *     初始化完成的回调，由于初始化方法是由外部执行，所以当外部完成初始化之后，需要掉这个接口并传入初始化结果通知实例完成初始化。
  * }
  */
-export class asyncLoader {
-    constructor(params){
+
+var asyncLoader = exports.asyncLoader = function () {
+    function asyncLoader(params) {
+        _classCallCheck(this, asyncLoader);
+
         this.handleList = [];
         this.result = null;
         this.onLoad = this.onLoad.bind(this);
-        params.loader(this.onLoad)
+        params.loader(this.onLoad);
     }
 
     /**
      * 注册初始化完成后需要回调通知的方法
      * @param callback
      */
-    register(callback){
-        this.result ? callback(this.result) : this.handleList.push(callback)
-    }
 
-    /**
-     * 加载完成的方法，非外部接口
-     * @param result
-     */
-    onLoad(result){
-        this.result = result;
-        this.executeHandle();
-    }
 
-    /**
-     * 加载完成后执行的方法，非外部接口
-     */
-    executeHandle(){
-        this.handleList.map(i=>i(this.result));
-        this.handleList = null;
-    }
-}
+    _createClass(asyncLoader, [{
+        key: 'register',
+        value: function register(callback) {
+            this.result ? callback(this.result) : this.handleList.push(callback);
+        }
+
+        /**
+         * 加载完成的方法，非外部接口
+         * @param result
+         */
+
+    }, {
+        key: 'onLoad',
+        value: function onLoad(result) {
+            this.result = result;
+            this.executeHandle();
+        }
+
+        /**
+         * 加载完成后执行的方法，非外部接口
+         */
+
+    }, {
+        key: 'executeHandle',
+        value: function executeHandle() {
+            var _this = this;
+
+            this.handleList.map(function (i) {
+                return i(_this.result);
+            });
+            this.handleList = null;
+        }
+    }]);
+
+    return asyncLoader;
+}();
 
 /**
  * 获取src中key的值, 不存在则返回null
@@ -72,16 +103,16 @@ export class asyncLoader {
  * @param key
  * @returns {*}
  */
-export const safeGetValue = (src, key) => {
-    let rlt = null;
+
+
+var safeGetValue = exports.safeGetValue = function safeGetValue(src, key) {
+    var rlt = null;
     try {
         if (key.startsWith("[")) {
             rlt = eval("src" + key);
         } else {
             rlt = eval("src." + key);
         }
-    }
-    catch (e) {
-    }
+    } catch (e) {}
     return rlt;
-}
+};
