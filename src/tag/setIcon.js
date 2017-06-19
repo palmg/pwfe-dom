@@ -9,6 +9,14 @@ export const registerImgHandle = (id, callback) => {
     __img ? callback(__img[id]) : handleList.push({id, callback})
 }
 
+/**
+ * 获取__img实例
+ * @return {*}
+ */
+export const getImg = ()=>{
+    return __img
+}
+
 const executeHandle = ()=> {
     handleList.map(i=>i.callback(__img[i.id]));
     handleList = null;

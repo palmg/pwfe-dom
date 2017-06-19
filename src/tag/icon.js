@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import {isServerEvn} from '../../util'
-import {registerImgHandle} from './setIcon'
+import {registerImgHandle, getImg} from './setIcon'
 import noneImg from '../../res/icon/empty.png' //默认未显示的图片
 
 /**
@@ -33,8 +33,9 @@ class Icon extends React.Component {
     constructor(...props) {
         super(...props);
         const params = this.props, src = params.src
-        this.state = __img ? {
-            img: __img[src]
+        const _img = getImg()
+        this.state = _img ? {
+            img: _img[src]
         } : {}
         /*
         * 如果是服务端渲染，会将当前的图片标记赋值为图片id
