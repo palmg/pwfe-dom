@@ -6,6 +6,7 @@ import Icon from './lib/tag/icon'
 import DynaIcon from './lib/tag/dynaIcon'
 import Img from './lib/tag/img'
 import A from './lib/tag/a'
+import setIcon from './lib/tag/setIcon'
 
 const Tag = {
     /**
@@ -14,6 +15,11 @@ const Tag = {
      * @constructor
      */
     Img,
+    /**
+     * 设置当前的图标对象，当站内图标初始化完毕之后，需要调用这个方法来告知组件图标已经异步加载完成
+     * @param img
+     */
+    setIcon,
     /**
      * 标签组件。
      * 1）标签组件需要绑定资源路径使用，资源路径的配置文件默认在res/index中。每增加一个图片，都需要增加一个资源引用。
