@@ -1,3 +1,4 @@
-/**
- * Created by Administrator on 2017/6/19.
- */
+import {getComponentName, isServerEvn, asyncLoader, safeGetValue} from './lib/util/index'
+const util = {getComponentName, isServerEvn, asyncLoader, safeGetValue}
+export default util
+export {getComponentName, isServerEvn, asyncLoader, safeGetValue}
