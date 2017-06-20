@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 /**
  * Created by chkui on 2017/6/20.
@@ -11,27 +11,26 @@ Object.defineProperty(exports, "__esModule", {
  * 环境配置包。为了统一所有项目的状态，目前支持运行模式配置和本地开发模式配置
  * 请在运行之前配置
  */
-
 /**
- * 运行模式[DEV|SITE],开发模式和站点模式
+ * 获取运行模式[DEV|SITE],如果已经通过webpack预设了模式__RunMode。则返回预设值，如果没有，返回默认值
+ * @return {string}
  */
-var __runMode = 'SITE',
-
-/**
- *标识是否为本地模式 [true|false]
- */
-__local = false;
-
 var getRunMode = exports.getRunMode = function getRunMode() {
-  return __runMode;
-};
-var setRunMode = exports.setRunMode = function setRunMode(mode) {
-  return __runMode = mode;
+    var __runMode = void 0;
+    !__runMode && function () {
+        try {
+            __runMode = __RunMode;
+        } catch (e) {}
+    }();
+    return __runMode || "SITE";
 };
 
 var getLocal = exports.getLocal = function getLocal() {
-  return __local;
-};
-var setLocal = exports.setLocal = function setLocal(local) {
-  return __local = local;
+    var __local = void 0;
+    !__local && function () {
+        try {
+            __local = __Local;
+        } catch (e) {}
+    }();
+    return typeof __local === "undefined" ? false : __local;
 };
