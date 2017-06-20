@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag.Img Test 1`] = `
+<div>
+  browser.local:
+  function local(url) {
+          //TODO 服务器跳转暂未实现
+      }
+  browser.forward:
+  function forward(url) {
+          url ? history.push(url) : history.goForward();
+      }
+  browser.back:
+  function back() {
+          history.goBack();
+      }
+</div>
+`;

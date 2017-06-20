@@ -9,6 +9,8 @@ var _redux = require('redux');
 
 var _util = require('./util');
 
+var _env = require('./env');
+
 var _reduxThunk = require('redux-thunk');
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
@@ -17,14 +19,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //中间渲染组件
 
-var store = void 0,
-    //本地存储store对象
-apply = void 0; //中间件工具
 /**
  * Created by chkui on 2016/12/13.
  * 通用redux工具。
  */
-if (!(0, _util.isServerEvn)() && __RunMode === "DEV") {
+var store = void 0,
+    //本地存储store对象
+apply = void 0; //中间件工具
+if (!(0, _util.isServerEvn)() && (0, _env.getRunMode)() === "DEV") {
     var createLogger = require('redux-logger'),
         //日志工具
     loggerMiddleware = createLogger(); //创建日志

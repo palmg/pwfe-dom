@@ -13,6 +13,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _util = require('./util');
 
+var _env = require('./env');
+
 var _createBrowserHistory = require('history/createBrowserHistory');
 
 var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
@@ -35,7 +37,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 //路由
-var history = !(0, _util.isServerEvn)() && ("DEV" === __RunMode && __Local ? (0, _createHashHistory2.default)() : (0, _createBrowserHistory2.default)());
+var history = !(0, _util.isServerEvn)() && ((0, _env.getRunMode)() === "DEV" && (0, _env.getLocal)() ? (0, _createHashHistory2.default)() : (0, _createBrowserHistory2.default)());
 
 /**
  * 服务器控制类

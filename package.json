@@ -7,8 +7,9 @@
     "doc": "doc"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "babel":"babel ./src/ -d ./"
+    "test": "jest",
+    "babel": "babel ./src/ -d ./",
+    "build": "npm run babel & npm run test"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.1.1",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^6.2.7",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-runtime": "^6.15.0",
@@ -56,10 +58,12 @@
     "file-loader": "^0.10.1",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.24.1",
+    "jest": "^20.0.4",
     "json-loader": "^0.5.4",
     "node-sass": "^4.1.1",
     "postcss-loader": "^1.2.1",
     "precss": "^1.4.0",
+    "react-test-renderer": "^15.6.1",
     "sass-loader": "^4.0.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",

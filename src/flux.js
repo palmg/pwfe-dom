@@ -4,11 +4,12 @@
  */
 import {createStore/*store创建器*/, combineReducers/*reducer合并工具*/, applyMiddleware/*中间渲染工具，用于支持ajax等异步渲染*/} from 'redux';
 import {isServerEvn} from './util'
+import {getRunMode}from './env'
 import thunkMiddleware from 'redux-thunk';//中间渲染组件
 
 let store,//本地存储store对象
     apply;//中间件工具
-if (!isServerEvn() && __RunMode === "DEV") {
+if (!isServerEvn() && getRunMode() === "DEV") {
     const createLogger = require('redux-logger'),//日志工具
         loggerMiddleware = createLogger();//创建日志
     apply = applyMiddleware(thunkMiddleware, loggerMiddleware)

@@ -68,12 +68,12 @@ export class asyncLoader {
 
 /**
  * 获取src中key的值, 不存在则返回null
- * @param src
- * @param key
- * @returns {*}
+ * @param {object} src 要被获取值的对象，方法或看对象中是否包含名为key的属性 {}.key = 'value';
+ * @param key 要获取值的属性
+ * @returns {*} 返回对应的属性值，不存在则返回 undefined
  */
 export const safeGetValue = (src, key) => {
-    let rlt = null;
+    let rlt;
     try {
         if (key.startsWith("[")) {
             rlt = eval("src" + key);
