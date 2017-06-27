@@ -31,6 +31,6 @@ var Tag = require('pwfe-dom/tag')
 ### 配置
 组件提供2个配置入口。分别是
 env和Tag.setIcon, env用于配置
-|cellHead1|cellHead2|
-|---------|---------|
-|value1   |value2   |
+cellHead1|cellHead2
+---------|---------
+value1   |value2   
