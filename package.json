@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest",
     "babel": "babel ./src/ -d ./",
-    "build": "npm run babel & npm run test"
+    "build": "npm run babel & npm run test",
+    "demo": "webpack-dev-server --progress --colors --inline --config ./demo/webpack.client"
   },
   "repository": {
     "type": "git",

@@ -7,7 +7,7 @@ import {Route, Link} from './router'
 import bundle from './bundle'
 
 /**
- * 前后端同构的App入口。一般和
+ * 前后端同构的App入口。如果需要二次开发，请参照这个模板
  * @param props
  * @return {XML}
  * @constructor
