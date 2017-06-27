@@ -14,7 +14,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  * 前后端同构的App入口。如果需要二次开发，请参照这个模板
- * @param props
+ * @param {object} props{
+ *     init : {comp:后台初始化的组件,id:初始化组件对应的id}
+ *     routes : 路由列表
+ *     children : 子元素
+ * }
  * @return {XML}
  * @constructor
  */
@@ -25,6 +29,7 @@ var App = function App(props) {
     return _react2.default.createElement(
         'div',
         null,
+        props.children,
         routes.map(function (i) {
             return _react2.default.createElement(_router.Route, { key: i.id, exact: true, path: i.url,
                 component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component) });

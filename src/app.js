@@ -3,12 +3,16 @@
  */
 
 import React from 'react'
-import {Route, Link} from './router'
+import {Route} from './router'
 import bundle from './bundle'
 
 /**
  * 前后端同构的App入口。如果需要二次开发，请参照这个模板
- * @param props
+ * @param {object} props{
+ *     init : {comp:后台初始化的组件,id:初始化组件对应的id}
+ *     routes : 路由列表
+ *     children : 子元素
+ * }
  * @return {XML}
  * @constructor
  */
@@ -16,6 +20,7 @@ const App = props => {
     const {init, routes} = props;
     return (
         <div>
+            {props.children}
             {routes.map(i=><Route key={i.id} exact path={i.url}
                                   component={bundle(init.id === i.id && init.comp, i.component)}/>)}
         </div>

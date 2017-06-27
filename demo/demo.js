@@ -3,6 +3,7 @@
  */
 
 import React from 'react'
+import {Link} from '../src/router'
 import {render} from 'react-dom'
 import entry from '../src/entry'
 
@@ -22,7 +23,7 @@ const routes = [{
     component: (cb)=> {
         cb(Comp1)
     }
-},{
+}, {
     id: 'Comp2',
     url: '/comp2',
     name: '演示文稿2',
@@ -38,8 +39,14 @@ const Comp2 = props =>
     <div>Comp2</div>
 
 entry({
-    reducer:{reducer},
+    reducer: {reducer},
     routes: routes,
-    renderCb: ()=>{console.log('render success!')}
+    children: (<div>
+        <Link to="/">comp1</Link>
+        <Link to="/comp2">comp2</Link>
+    </div>),
+    renderCb: ()=> {
+        console.log('render success!')
+    }
 })
 
