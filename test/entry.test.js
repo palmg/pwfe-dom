@@ -2,7 +2,9 @@
  * Created by chkui on 2017/6/26.
  */
 import React from 'react'
-import Entry from '../entry'
+import Entrance from '../entry'
+import {shallow} from 'enzyme';
+//import renderer from 'react-test-renderer'
 
 const reducer = (state = 'begin test', action)=> {
     switch (action.type) {
@@ -30,12 +32,11 @@ beforeAll(() => {
 });
 
 test("entry Test", ()=> {
-    const comp = renderer.create(
-        <Entry reducer={reducer} routes={routes} />
+    const comp = shallow(
+        <Entrance reducer={{reducer}} routes={routes} />
     )
 
-    let tree = comp.toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(comp.text()).toEqual('');
 })
 
 

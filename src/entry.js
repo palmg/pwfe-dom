@@ -1,7 +1,7 @@
 /**
  * Created by chkui on 2017/6/26.
  */
-import React from 'react'
+import {Component} from 'react'
 import {Provider} from 'react-redux'
 import {Router, history} from './router'
 import {buildStore} from './flux'
@@ -42,7 +42,7 @@ import DefApp from './app'
  * init的结构为{comp 和 id} comp表示首屏渲染的页面以及页面对应的id。
  * routes就是定义的路由列表
  */
-class Entry extends React {
+class Entry extends Component {
     constructor(...props) {
         super(...props)
         const innerWindow = window || {}, //防止window不存在时属性运算异常
@@ -55,7 +55,7 @@ class Entry extends React {
     componentWillMount() {
         const routes = this.props.routes, initID = this.serverParam.initId || routes[0].id
         for (let i of routes) {
-            if (i.id === initId) {
+            if (i.id === initID) {
                 i.component(comp=> {
                     this.setState({comp: comp})
                 })

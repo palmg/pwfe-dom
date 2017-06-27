@@ -4,8 +4,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
-
 var _reactRedux = require('react-redux');
 
 var _router = require('./router');
@@ -63,8 +61,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * init的结构为{comp 和 id} comp表示首屏渲染的页面以及页面对应的id。
  * routes就是定义的路由列表
  */
-var Entry = function (_React) {
-    _inherits(Entry, _React);
+var Entry = function (_Component) {
+    _inherits(Entry, _Component);
 
     function Entry() {
         var _ref;
@@ -100,7 +98,7 @@ var Entry = function (_React) {
                 for (var _iterator = routes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var i = _step.value;
 
-                    if (i.id === initId) {
+                    if (i.id === initID) {
                         i.component(function (comp) {
                             _this2.setState({ comp: comp });
                         });
@@ -125,19 +123,19 @@ var Entry = function (_React) {
         key: 'render',
         value: function render() {
             var App = this.props.app || _app2.default;
-            return this.state.Comp ? _react2.default.createElement(
+            return this.state.Comp ? React.createElement(
                 _reactRedux.Provider,
                 { store: store },
-                _react2.default.createElement(
+                React.createElement(
                     _router.Router,
                     { history: _router.history },
-                    _react2.default.createElement(App, { init: { comp: this.state.comp, id: this.serverParam.initId }, routes: this.props.routes })
+                    React.createElement(App, { init: { comp: this.state.comp, id: this.serverParam.initId }, routes: this.props.routes })
                 )
             ) : null;
         }
     }]);
 
     return Entry;
-}(_react2.default);
+}(_react.Component);
 
 module.exports = Entry;
