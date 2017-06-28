@@ -6,6 +6,7 @@ import React from 'react'
 import {Link} from '../src/router'
 import {render} from 'react-dom'
 import entry from '../src/entry'
+const cn = require('classnames/bind').bind(require('./demo.scss'))
 
 const reducer = (state = 'begin test', action)=> {
     switch (action.type) {
@@ -45,6 +46,7 @@ entry({
         <Link to="/">comp1</Link>
         <Link to="/comp2">comp2</Link>
     </div>),
+    className: cn('demo'),
     renderCb: ()=> {
         console.log('render success!')
     }
