@@ -17,6 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {object} props{
  *     init : {comp:后台初始化的组件,id:初始化组件对应的id}
  *     routes : 路由列表
+ *     className : app的样式
  *     children : 子元素
  * }
  * @return {XML}
@@ -24,11 +25,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 var App = function App(props) {
     var init = props.init,
-        routes = props.routes;
+        routes = props.routes,
+        className = props.className;
 
     return _react2.default.createElement(
         'div',
-        null,
+        { className: className },
         props.children,
         routes.map(function (i) {
             return _react2.default.createElement(_router.Route, { key: i.id, exact: true, path: i.url,

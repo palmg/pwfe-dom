@@ -42,13 +42,14 @@ import DefApp from './app'
  *  {array} routes：路由列表
  *  {component} app: 用于前后端同构渲染的app。该App会被传入 init参数和 routes参数。
  *  {component} children: 在app中显示的子元素，如果传入了自定义的app，则会传入到props.children中
+ *  {string} className: app的样式
  *  {function} renderCb: 渲染完成的回调
  * }
  * init的结构为{comp 和 id} comp表示首屏渲染的页面以及页面对应的id。
  * routes就是定义的路由列表
  */
 const entry = (options) => {
-    const {reducer, routes, app, renderCb} = options,
+    const {reducer, routes, app, renderCb, className} = options,
         innerWindow = window || {}, //防止window不存在时属性运算异常
         store = buildStore(reducer, innerWindow.REDUX_STATE),
         serverParam = innerWindow.SERVER_PARAMS || {},
@@ -60,7 +61,7 @@ const entry = (options) => {
                 render(
                     <Provider store={store}>
                         <Router history={history}>
-                            <App init={{comp, id: initID}} routes={routes}>
+                            <App className={className} init={{comp, id: initID}} routes={routes}>
                                 {options.children}
                             </App>
                         </Router>

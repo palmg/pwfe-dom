@@ -11,15 +11,16 @@ import bundle from './bundle'
  * @param {object} props{
  *     init : {comp:后台初始化的组件,id:初始化组件对应的id}
  *     routes : 路由列表
+ *     className : app的样式
  *     children : 子元素
  * }
  * @return {XML}
  * @constructor
  */
 const App = props => {
-    const {init, routes} = props;
+    const {init, routes, className} = props;
     return (
-        <div>
+        <div className={className}>
             {props.children}
             {routes.map(i=><Route key={i.id} exact path={i.url}
                                   component={bundle(init.id === i.id && init.comp, i.component)}/>)}

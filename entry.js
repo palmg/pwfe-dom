@@ -53,6 +53,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *  {array} routes：路由列表
  *  {component} app: 用于前后端同构渲染的app。该App会被传入 init参数和 routes参数。
  *  {component} children: 在app中显示的子元素，如果传入了自定义的app，则会传入到props.children中
+ *  {string} className: app的样式
  *  {function} renderCb: 渲染完成的回调
  * }
  * init的结构为{comp 和 id} comp表示首屏渲染的页面以及页面对应的id。
@@ -66,6 +67,7 @@ var entry = function entry(options) {
         routes = options.routes,
         app = options.app,
         renderCb = options.renderCb,
+        className = options.className,
         innerWindow = window || {},
         store = (0, _flux.buildStore)(reducer, innerWindow.REDUX_STATE),
         serverParam = innerWindow.SERVER_PARAMS || {},
@@ -89,7 +91,7 @@ var entry = function entry(options) {
                             { history: _router.history },
                             _react2.default.createElement(
                                 App,
-                                { init: { comp: comp, id: initID }, routes: routes },
+                                { className: className, init: { comp: comp, id: initID }, routes: routes },
                                 options.children
                             )
                         )
