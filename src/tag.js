@@ -62,4 +62,4 @@ const Tag = {
     A
 };
 
-export default Tag
+module.exports = Tag

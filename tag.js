@@ -1,9 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _icon = require('./lib/tag/icon');
 
 var _icon2 = _interopRequireDefault(_icon);
@@ -82,4 +78,4 @@ var Tag = {
     * Created by chkui on 2017/5/27.
     */
 
-exports.default = Tag;
+module.exports = Tag;
