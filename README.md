@@ -7,12 +7,12 @@ pwfe—palmg web front end。
 
 -----
 
-##安装
+## 安装
 
  1. 安装git。 
  2. 执行：npm install git+https://github.com/chkui/pwfe-dom.git --save-dev
 
-###window cmd无法执行git命令的问题
+### window cmd无法执行git命令的问题
 
  1. windows10以上版本且有powerShell脚本工具直接使用powerShell执行以上过程。
  2. window其他版本，需要用安装git后的git bash工具执行npm i
@@ -49,7 +49,8 @@ import bundle from 'pwfe-dom/bundle'
 <div>bundle(initComp, getComp)</div>
 ```
 **参数说明**
-接口 | 类型 |说明
+
+接口 | 类型 | 说明
 ----- | ---- | --- 
 initComp | Element | 优先初始化的组件。当传入该参数时，表示不必使用第二个参数的get回调去获取参数。而直接使用这个组件。
 getComp | function | 异步获取参数的回调方法。该方法会在组件开始渲染时被调用。传入另外一个回调方法，实现异步加载。例如`(cb)=>{cb(require('./page'))}`，在获取组件后调用cb返回。
@@ -67,7 +68,8 @@ render(
 )
 ```
 **参数说明**
-接口 | 类型 |说明
+
+接口 | 类型 | 说明
 ----- | ---- | --- 
 init | object | 系统初始化渲染参数。对象中包含2个参数：`comp`和`id`。<br>`comp`：初始化渲染的页面组件，一般用于前后端同构渲染。这个组件会在第一次渲染之前就传入，放置前后端首屏异构。<br>`id`：初始渲染组件对应的路由表id。
 routes | arrya | 路由列表。结构请看规范中的routes说明。
@@ -92,7 +94,8 @@ entry({
 })
 ```
 **参数说明**
-接口 | 类型 |说明
+
+接口 | 类型 | 说明
 ----- | ---- | --- 
 reducer | object | redux对应使用的reducer。结构为`{key:function(){}}`
 routes | array | **routes**列表，详见前文的**routes**说明
@@ -136,7 +139,7 @@ src | 与标准`<img/>`不同是，这里的src传入的是一个资源文件名
 import Tag from 'pwfe-dom/tag'
 <Tag.DynaIcon src="myPicName" actSrc="myActPicName" act/>
 ```
-接口 | 类型 |说明
+接口 | 类型 | 说明
 ----- | ---- | --- 
 all | object | 组件支持所有`<img/>`源生属性和方法。
 src | string | 未激活时要显示的图标，src传入的是一个资源文件名称。详见`Tag.setIcon`部分说明。
@@ -189,6 +192,7 @@ module.exports = img
     use:['url-loader?limit=25000']
 }
 ```
+
 接口 | 类型 |说明
 ----- | ---- | --- 
 img | object | 设定img的资源对象。
