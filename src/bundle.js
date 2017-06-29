@@ -32,7 +32,7 @@ const bundle = (initComponent, getComponent)=> {
 
         render() {
             let {Comp} = this.state;
-            Comp.default &&
+            Comp && Comp.default &&
             (Comp = Comp.default) &&
             //增加注解说明需要将export default {} 替换为 module.exports = {}
             (console.error("In current version 'require.ensure' has an issue that can't support es6 'export default {}' syntax. " +

@@ -65,7 +65,7 @@ var bundle = function bundle(initComponent, getComponent) {
             value: function render() {
                 var Comp = this.state.Comp;
 
-                Comp.default && (Comp = Comp.default) &&
+                Comp && Comp.default && (Comp = Comp.default) &&
                 //增加注解说明需要将export default {} 替换为 module.exports = {}
                 console.error("In current version 'require.ensure' has an issue that can't support es6 'export default {}' syntax. " + "Now replace Comp=Comp.default with force, but it could lead to other problems." + "If using 'require.ensure' to export a module, 'module.export = object' expression is appropriate.");
                 return Comp ? _react2.default.createElement(Comp, this.props) : null;

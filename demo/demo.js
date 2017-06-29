@@ -2,7 +2,6 @@
  * Created by chkui on 2017/6/27.
  */
 
-import React from 'react'
 import {Link} from '../router'
 import {render} from 'react-dom'
 import entry from '../entry'
