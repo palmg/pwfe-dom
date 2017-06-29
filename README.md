@@ -267,11 +267,11 @@ query | object | 请求的查询字段，类似的get请求的？参数。
 ### router
 *router* 提供路由、链接、跳转、重定向等功能。模块包含的组件有：`Route`, `Router`, `reRoute`, `Link`, `Redirect`, `StaticRouter`。
 其中`Route`, `Router`, `Link`, `Redirect`, `StaticRouter` 基于`react-route`实现。请参看对应的说明。
-`Route`：https://reacttraining.com/react-router/web/api/Route
-`Router`：https://reacttraining.com/react-router/web/api/Router
-`Link`：https://reacttraining.com/react-router/web/api/Link
-`Redirect`： https://reacttraining.com/react-router/web/api/Redirect
-`StaticRouter`：仅用于后台渲染。https://reacttraining.com/react-router/web/api/StaticRouter。
+ 1. `Route`：https://reacttraining.com/react-router/web/api/Route
+ 2. `Router`：https://reacttraining.com/react-router/web/api/Router
+ 3. `Link`：https://reacttraining.com/react-router/web/api/Link
+ 4. `Redirect`： https://reacttraining.com/react-router/web/api/Redirect
+ 5. `StaticRouter`：仅用于后台渲染。https://reacttraining.com/react-router/web/api/StaticRouter。
 
 `reRoute`是一个提供路由控制功能的高阶组件。采用react高阶组件的方式使用：
 ```JavaScript
@@ -288,8 +288,44 @@ local | 通过服务器跳转。跳转石会访问服务器，浏览器重新刷
 forward | 浏览器向前跳转，使用该方法时不会发生服务器请求，只会发生react组件替换。<br>若不传入url参数，则浏览器会发生前进一页的行为。<br>若传入url参数，浏览器会自行跳转到对应url。<br>调用方法：`browser.forward('/myPath')`
 back | 浏览器回滚，不会发生服务器请求。<br>调用方法：`browser.back()`
 
-
-
+## util
+**util**提供了最基础的工具。包括`getComponentName`、`isServerEvn`、`asyncLoader`和`safeGetValue`。
+方法 | 说明
+----- | ----
+getComponentName | 获取react组件的名称。
+isServerEvn | 获取当前的运行环境是服务器端还是浏览器端。
+asyncLoader | 异步加载类。用于等待某一项任务完成，然后通知所有的处理器。
+safeGetValue | 从对象中安全获取属性。
+案例：
+```JavaScript
+//import util from 'pwfe-dom/util' 全局引用
+import {getComponentName} from 'pwfe-dom/util'
+console.log(getComponentName(component))
+```
+`asyncLoader`使用方法:
+```JavaScript
+//import util from 'pwfe-dom/util' 全局引用
+import {asyncLoader} from 'pwfe-dom/util'
+/**
+* 新建一个asyncLoader实例。
+* 新建时传入回调方法，表示需要加载的内容。
+* call由asyncLoader传入，加载的内容成功后，需要调用call方法
+*/
+const loader = new asyncLoader({
+    loader: (call)=> {
+        require.ensure([], require => {
+            call(require('superagent'))
+        }, 'request')
+    }
+})
+//注册一个处理器，
+//当第一个处理器被调用时，上面传入的loader方法会被触发。
+//laoder方法执行回调之后
+//
+loader.register((result)=>{
+    console.log(resule)
+})
+```
 
 
   [1]: http://cn.redux.js.org/docs/basics/Store.html
