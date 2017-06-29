@@ -21,7 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * 网络服务工具
  * @param {object} params{
  *     {string} method: 服务器调用方法["GET"|"POST"],
- *     {url} url: 访问路径
+ *     {string} url: 访问路径
  *     {object|string} data: 要传递的数据
  *     {object} header: 要提交的头部 例如 {"Accept":"application/json"}
  *     {object} query: 服务器调用的query admin?a=a&b=b等价于{a:'a',b:'b'}

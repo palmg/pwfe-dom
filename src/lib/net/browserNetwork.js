@@ -3,6 +3,7 @@
  */
 
 import {asyncLoader, isServerEvn} from '../../util'
+import {buildMapping, exeMapping, exeMappingEx} from './util'
 
 if (typeof require.ensure !== 'function') { //server without webpack
     require.ensure = function (dependencies, callback) {
@@ -41,7 +42,7 @@ class browserNetwork {
     }
 
     onLoad(request) {
-        const params = this.params;
+        const params = this.params, cb = this.callback;
         const req = params.method === 'GET' ? request.get(params.url) : request.post(params.url).type('form');
         params.data && req.send(params.data);
         params.header && (()=> {
@@ -53,10 +54,10 @@ class browserNetwork {
         params.query && req.query(params.query);
         req.end((err, res)=> {
             if (!err && res.ok) {
-                this.callback.data && this.callback.data(res.body);
-                this.callback.headers && this.callback.headers(res.headers);
+                exeMapping(cb, 'suc', res.body)
+                exeMapping(cb, 'headers', res.headers)
             } else {
-                this.callback.err(err, res)
+                exeMappingEx(cb, 'err', err, res)
                 console.error(`请求遇到问题: ${err}`);
             }
         });
@@ -77,7 +78,7 @@ class browserNetwork {
      * @returns {browserNetwork}
      */
     suc(fun) {
-        this.callback.data = fun;
+        buildMapping(this.callback, 'suc', fun)
         return this;
     }
 
@@ -87,7 +88,7 @@ class browserNetwork {
      * @returns {browserNetwork}
      */
     headers(fun) {
-        this.callback.headers = fun;
+        buildMapping(this.callback, 'headers', fun)
         return this;
     }
 
@@ -96,7 +97,7 @@ class browserNetwork {
      * @param fun(err,res) err为错误信息,res为服务器回调信息
      */
     err(fun) {
-        this.callback.err = fun;
+        buildMapping(this.callback, 'err', fun)
         return this;
     }
 }

@@ -3,6 +3,7 @@
  */
 
 import {asyncLoader, isServerEvn} from '../../util'
+import {buildMapping, exeMapping, exeMappingEx} from './util'
 
 if (typeof require.ensure !== 'function') { //server without webpack
     require.ensure = function (dependencies, callback) {
@@ -43,7 +44,8 @@ class serverNetwork {
     }
 
     onLoad(http) {
-        const params = this.params;
+        const params = this.params,
+            _this = this
         this.request = http.request({
             method: params.method,
             host: context.host,
@@ -52,7 +54,7 @@ class serverNetwork {
             headers: params.header
         }, this.response)
         this.request.on('error', (e) => {
-            _this.callback.err(e, e.message)
+            exeMappingEx(_this.callback, 'err', e, e.message)
             console.error(`请求遇到问题: ${e.message}`);
         });
         params.data && this.request.write(params.data);
@@ -77,7 +79,7 @@ class serverNetwork {
         });
         res.on('end', ()=> {
             body.startsWith("{") && (body = JSON.parse(body))
-            _this.callback.suc(body);
+            exeMapping(_this.callback, 'suc', body)
         });
     }
 
@@ -87,7 +89,7 @@ class serverNetwork {
      * @returns {serverNetwork}
      */
     suc(fun) {
-        this.callback.suc = fun;
+        buildMapping(this.callback, 'suc', fun)
         return this;
     }
 
@@ -97,7 +99,7 @@ class serverNetwork {
      * @returns {serverNetwork}
      */
     headers(fun) {
-        this.callback.headers = fun;
+        buildMapping(this.callback, 'headers', fun)
         return this;
     }
 
@@ -106,7 +108,7 @@ class serverNetwork {
      * @param fun(err,res) err为错误信息,res为服务器回调信息
      */
     err(fun) {
-        this.callback.err = fun;
+        buildMapping(this.callback, 'err', fun)
         return this;
     }
 }

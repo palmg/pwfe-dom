@@ -20,6 +20,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * Created by chkui on 2017/6/10.
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
+/**
+ * 页面分片高阶组件。该组件配合`routes`用于实现页面分片。
+ * @param initComponent
+ * @param getComponent
+ * @return {{new(...[*]): {async: (function(*=)), render: (function()), componentWillMount: (function())}}}
+ */
 var bundle = function bundle(initComponent, getComponent) {
     return function (_React$Component) {
         _inherits(_class, _React$Component);
