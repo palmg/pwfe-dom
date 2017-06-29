@@ -50,7 +50,7 @@ import bundle from 'pwfe-dom/bundle'
 ```
 **参数说明**
 接口 | 类型 |说明
------| ---- | --- 
+----- | ---- | --- 
 initComp | Element | 优先初始化的组件。当传入该参数时，表示不必使用第二个参数的get回调去获取参数。而直接使用这个组件。
 getComp | function | 异步获取参数的回调方法。该方法会在组件开始渲染时被调用。传入另外一个回调方法，实现异步加载。例如`(cb)=>{cb(require('./page'))}`，在获取组件后调用cb返回。
 ### App
@@ -68,7 +68,7 @@ render(
 ```
 **参数说明**
 接口 | 类型 |说明
------| ---- | --- 
+----- | ---- | --- 
 init | object | 系统初始化渲染参数。对象中包含2个参数：`comp`和`id`。<br>`comp`：初始化渲染的页面组件，一般用于前后端同构渲染。这个组件会在第一次渲染之前就传入，放置前后端首屏异构。<br>`id`：初始渲染组件对应的路由表id。
 routes | arrya | 路由列表。结构请看规范中的routes说明。
 className | string | app组件样式。所有App中的子元素都会被一个`div`标签包裹，传入className可以设定这个`div`对应的样式。
@@ -93,7 +93,7 @@ entry({
 ```
 **参数说明**
 接口 | 类型 |说明
------| ---- | --- 
+----- | ---- | --- 
 reducer | object | redux对应使用的reducer。结构为`{key:function(){}}`
 routes | array | **routes**列表，详见前文的**routes**说明
 app | Element | 用于前后端同构渲染的组件。该App会被传入`init`参数和`routes`参数。不设置默认使用`pwfe-dom/app`组件
@@ -137,7 +137,7 @@ import Tag from 'pwfe-dom/tag'
 <Tag.DynaIcon src="myPicName" actSrc="myActPicName" act/>
 ```
 接口 | 类型 |说明
------| ---- | --- 
+----- | ---- | --- 
 all | object | 组件支持所有`<img/>`源生属性和方法。
 src | string | 未激活时要显示的图标，src传入的是一个资源文件名称。详见`Tag.setIcon`部分说明。
 actSrc | string | 激活后要显示的图标，actSrc传入的是一个资源文件名称。详见`Tag.setIcon`部分说明。
@@ -150,7 +150,7 @@ import Tag from 'pwfe-dom/tag'
 <Tag.A href="/path/name" server/>
 ```
 接口 | 类型 |说明
------| ---- | --- 
+----- | ---- | --- 
 href | string | 要跳转的路径。
 server | boolean | 标记是否通过服务器跳转，默认为false。
 
@@ -190,7 +190,7 @@ module.exports = img
 }
 ```
 接口 | 类型 |说明
------| ---- | --- 
+----- | ---- | --- 
 img | object | 设定img的资源对象。
 defImg | string | 设定默认图片。
 
@@ -203,7 +203,7 @@ import {buildStore} from 'pwfe-dom/flux'
 const store = buildStore(reducer, window.REDUX_STATE)
 ```
 接口 | 类型 |说明
------| ---- | --- 
+----- | ---- | --- 
 reducer | object | 设定`redux`的[reducer][2]。其结构为`{reducerName:function()}。
 loaderStore | object | 设定已有的store对象，一般用于前后端同构渲染。
 
@@ -242,8 +242,8 @@ post('/myPath/value',{key:'kye',value:'value'})
 ```
 ### net方法
 net传递的是一个options对象——`net(options)`。下面是options的参数：
-接口 | 类型 |说明
------| ---- | --- 
+接口 | 类型 | 说明
+----- | ----- | ----- 
 method | string | 请求的方法`GET`或`POST`。
 url | string | 请求地址。
 data | object或string | 要传递的数据。可以是一段字符串，或者是一个JSON结构的对象。
@@ -252,15 +252,15 @@ query | object | 请求的查询字段，类似的get请求的？参数。
 ### get方法
 GET请求。
 
-接口 | 类型 |说明
------| ---- | --- 
+接口 | 类型 | 说明
+----- | ---- | --- 
 url | string | 请求地址。
 query | object | 请求的查询字段，类似的get请求的？参数。
 ### post方法
 POST请求。
 
-接口 | 类型 |说明
------| ---- | --- 
+接口 | 类型 | 说明
+----- | ---- | --- 
 url | string | 请求地址。
 query | object | 请求的查询字段，类似的get请求的？参数。
 
