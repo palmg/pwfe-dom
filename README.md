@@ -128,6 +128,7 @@ all | Img组件支持所有`<img/>`源生属性和方法。
 import Tag from 'pwfe-dom/tag'
 <Tag.Icon src="myPicName" className="myStyle"/>
 ```
+
 接口  | 说明
 ------ | ------
 all | Icon组件支持所有`<img/>`源生属性和方法。
@@ -139,6 +140,7 @@ src | 与标准`<img/>`不同是，这里的src传入的是一个资源文件名
 import Tag from 'pwfe-dom/tag'
 <Tag.DynaIcon src="myPicName" actSrc="myActPicName" act/>
 ```
+
 接口 | 类型 | 说明
 ----- | ---- | --- 
 all | object | 组件支持所有`<img/>`源生属性和方法。
@@ -152,6 +154,7 @@ act | boolean | 是否激活标记true标识激活,需要动态传入。默认�
 import Tag from 'pwfe-dom/tag'
 <Tag.A href="/path/name" server/>
 ```
+
 接口 | 类型 |说明
 ----- | ---- | --- 
 href | string | 要跳转的路径。
@@ -244,8 +247,10 @@ post('/myPath/value',{key:'kye',value:'value'})
   .err((err,msg)=>{})
   .headers((header)=>{})
 ```
+
 ### net方法
 net传递的是一个options对象——`net(options)`。下面是options的参数：
+
 接口 | 类型 | 说明
 ----- | ----- | ----- 
 method | string | 请求的方法`GET`或`POST`。
