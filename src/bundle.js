@@ -4,6 +4,12 @@
 
 import React from 'react'
 
+/**
+ * 页面分片高阶组件。该组件配合`routes`用于实现页面分片。
+ * @param initComponent
+ * @param getComponent
+ * @return {{new(...[*]): {async: (function(*=)), render: (function()), componentWillMount: (function())}}}
+ */
 const bundle = (initComponent, getComponent)=> {
     return class extends React.Component {
         constructor(...props) {
