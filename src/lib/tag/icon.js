@@ -57,10 +57,6 @@ class Icon extends React.Component {
         })
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.state.img !== nextState.img
-    }
-
     componentWillReceiveProps(nextProps) {
         if (nextProps.src !== this.props.src) {
             this.loadImg(nextProps.src)
