@@ -15,8 +15,8 @@ let loader;
 isServerEvn() && (loader = new asyncLoader({
     loader: (call)=> {
         require.ensure([], require => {
-            call(require('http'))
-        }, 'http')
+            call(require('node-fetch'))
+        }, 'nodeFetch')
     }
 }))
 
@@ -43,22 +43,19 @@ class serverNetwork {
         this.response = this.response.bind(this);
     }
 
-    onLoad(http) {
+    onLoad(fetch) {
         const params = this.params,
-            _this = this
-        this.request = http.request({
-            method: params.method,
-            host: context.host,
-            port: context.port,
-            path: params.url,
-            headers: params.header
-        }, this.response)
-        this.request.on('error', (e) => {
+            _this = this,
+            options = {}
+        params.method && (options.method = params.method)
+        params.header && (options.headers = params.header)
+        params.data && (options.body = params.data)
+        fetch(params.url, options).then((res)=>{
+            this.response(res)
+        }).catch((e)=>{
             exeMappingEx(_this.callback, 'err', e, e.message)
-            console.error(`请求遇到问题: ${e.message}`);
-        });
-        params.data && this.request.write(params.data);
-        this.request.end();
+            console.error(`请求遇到问题: ${e}`);
+        })
     }
 
     /**
@@ -71,16 +68,8 @@ class serverNetwork {
     }
 
     response(res) {
-        const _this = this;
-        res.setEncoding('utf8');
-        let body = "";
-        res.on('data', (chunk)=> {
-            body += chunk;
-        });
-        res.on('end', ()=> {
-            body.startsWith("{") && (body = JSON.parse(body))
-            exeMapping(_this.callback, 'suc', body)
-        });
+        exeMapping(this.callback, 'suc', res.json())
+        exeMapping(this.callback, 'headers', res.headers.raw())
     }
 
     /**

@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/palmg/pwfe-dom#readme",
   "dependencies": {
+    "node-fetch": "^1.7.1",
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
     "react-redux": "^4.4.6",
