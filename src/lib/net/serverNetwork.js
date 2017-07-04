@@ -40,7 +40,6 @@ class serverNetwork {
         this.callback = {};//所有回调方法
         this.params = params;
         this.onLoad = this.onLoad.bind(this);
-        this.response = this.response.bind(this);
     }
 
     onLoad(fetch) {
@@ -51,7 +50,10 @@ class serverNetwork {
         params.header && (options.headers = params.header)
         params.data && (options.body = params.data)
         fetch(params.url, options).then((res)=>{
-            this.response(res)
+            exeMapping(_this.callback, 'headers', res.headers.raw())
+            return res.json()
+        }).then((json)=>{
+            exeMapping(_this.callback, 'suc', json)
         }).catch((e)=>{
             exeMappingEx(_this.callback, 'err', e, e.message)
             console.error(`请求遇到问题: ${e}`);
@@ -65,11 +67,6 @@ class serverNetwork {
     send() {
         loader.register(this.onLoad)
         return this;
-    }
-
-    response(res) {
-        exeMapping(this.callback, 'suc', res.json())
-        exeMapping(this.callback, 'headers', res.headers.raw())
     }
 
     /**
