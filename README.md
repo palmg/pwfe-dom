@@ -9,27 +9,15 @@ pwfe—palmg web front end。
 
 ## 安装
 
- 1. 安装git。 
- 2. 执行：npm install git+https://github.com/chkui/pwfe-dom.git --save-dev
+`npm install pwfe-dom`
 
-### window cmd无法执行git命令的问题
-
- 1. windows10以上版本且有powerShell脚本工具直接使用powerShell执行以上过程。
- 2. window其他版本，需要用安装git后的git bash工具执行npm i
-    命令。下载：https://git-for-windows.github.io/
-
-### sass-node安装出现异常
- 使用npm install 安装时，可能会提示node-sass安装异常，请执行以下步骤：
- ```bash
- $ npm rm node-sass
- $ npm install node-sass
- ```
- 如果问依然存在，请使用cnpm安装。
+### sass-node安装异常
+ 当nodejs版本较低时，安装node-sass会出现异常，请使用cnpm执行：
  ```bash
  $ npm rm node-sass
  $ cnpm install node-sass
  ```
-
+详情请查看：https://github.com/sass/node-sass/issues/468
 ## 规范
 **pwfe**中的所有前后端组件统一使用标准的`routes`列表作为路由配置：
 ```JavaScript
