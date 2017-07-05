@@ -1,6 +1,6 @@
 {
   "name": "pwfe-dom",
-  "version": "0.0.1",
+  "version": "0.0.1-beta",
   "description": "palmg web front end dom",
   "main": "index.js",
   "directories": {
