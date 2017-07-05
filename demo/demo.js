@@ -2,6 +2,7 @@
  * Created by chkui on 2017/6/27.
  */
 
+import React from 'react'
 import {Link} from '../router'
 import {render} from 'react-dom'
 import entry from '../entry'
@@ -31,7 +32,7 @@ const routes = [{
     component: (cb)=> {
         cb(Comp2)
     }
-},{
+}, {
     id: 'Click',
     url: '/Click',
     name: '异步测试',
@@ -46,28 +47,28 @@ const Comp1 = props =>
 const Comp2 = props =>
     <div>Comp2</div>
 
-class Click extends React.Component{
-    constructor(...props){
+class Click extends React.Component {
+    constructor(...props) {
         super(...props)
-        this.state = {info:'NONE'}
+        this.state = {info: 'NONE'}
         this.clickHandle = this.clickHandle.bind(this)
     }
 
-    clickHandle(){
+    clickHandle() {
         net({
-            method:'GET',
-            url:'https://file.mahoooo.com/res/policy/get'
-        }).suc((result)=>{
+            method: 'GET',
+            url: 'https://file.mahoooo.com/res/policy/get'
+        }).suc((result)=> {
             this.setState({
-                info:JSON.stringify(result)
+                info: JSON.stringify(result)
             })
-        }).suc((result)=>{
+        }).suc((result)=> {
             console.log(123)
         }).send()
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div onClick={this.clickHandle}>{this.state.info}</div>
         )
     }
