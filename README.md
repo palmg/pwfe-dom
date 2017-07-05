@@ -10,7 +10,6 @@ pwfe—palmg web front end。
 ## 安装
 
 `npm install pwfe-dom`
-
 ### sass-node安装异常
  当nodejs版本较低时，安装node-sass会出现异常，请使用cnpm执行：
  ```bash
