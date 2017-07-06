@@ -65,7 +65,10 @@ module.exports = {
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
             __RunMode:JSON.stringify('DEV'), //运行模式相关配置
             __Local:true //本地模式
-        })
+        }),
+        new webpack.NormalModuleReplacementPlugin(
+            /\/iconv-loader$/, 'node-noop'
+        )
     ],
     performance: { //fix the windows OS warning, the issue is local https://stackoverflow.com/questions/41159817/how-to-disable-optimize-warnings-in-webpack-2/41159932
         hints: false

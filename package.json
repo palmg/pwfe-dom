@@ -42,6 +42,7 @@
     "html-webpack-plugin": "^2.24.1",
     "json-loader": "^0.5.4",
     "node-fetch": "^1.7.1",
+    "node-noop": "^1.0.0",
     "node-sass": "^4.1.1",
     "postcss-loader": "^1.2.1",
     "precss": "^1.4.0",
