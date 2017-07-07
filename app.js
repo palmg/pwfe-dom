@@ -37,8 +37,13 @@ var App = function App(props) {
                 component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component) });
         })
     );
-}; /**
-    * Created by chkui on 2017/6/26.
-    */
+};
+
+// commonjs
+/**
+ * Created by chkui on 2017/6/26.
+ */
 
 module.exports = App;
+// es6 default export compatibility
+module.exports.default = module.exports;

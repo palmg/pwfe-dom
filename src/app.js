@@ -28,4 +28,7 @@ const App = props => {
     )
 }
 
-module.exports = App
+// commonjs
+module.exports = App;
+// es6 default export compatibility
+module.exports.default = module.exports;

@@ -74,4 +74,7 @@ const entry = (options) => {
     }
 }
 
-module.exports = entry
+// commonjs
+module.exports = entry;
+// es6 default export compatibility
+module.exports.default = module.exports;

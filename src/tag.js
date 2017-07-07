@@ -62,4 +62,7 @@ const Tag = {
     A
 };
 
-module.exports = Tag
+// commonjs
+module.exports = Tag;
+// es6 default export compatibility
+module.exports.default = module.exports;
