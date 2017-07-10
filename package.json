@@ -1,6 +1,6 @@
 {
   "name": "pwfe-dom",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "palmg web front end dom",
   "main": "",
   "scripts": {
@@ -18,8 +18,8 @@
     "redux",
     "palmg"
   ],
-  "author": "chkui",
-  "license": "Apache 2.0",
+  "author": "palmg",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/palmg/pwfe-dom/issues"
   },
