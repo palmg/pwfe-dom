@@ -37,7 +37,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 //路由
-var history = !(0, _util.isServerEvn)() && ((0, _env.getRunMode)() === "SITE" && !(0, _env.getLocal)() ? (0, _createBrowserHistory2.default)() : (0, _createHashHistory2.default)());
+var history = !(0, _util.isServerEvn)() && ((0, _env.getHisType)() === _env.HistoryType.Browser ? (0, _createBrowserHistory2.default)() : (0, _createHashHistory2.default)());
 
 /**
  * 服务器控制类

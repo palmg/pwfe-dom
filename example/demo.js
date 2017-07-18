@@ -4,48 +4,86 @@
 
 import React from 'react'
 import {Link} from '../router'
-import {render} from 'react-dom'
 import entry from '../entry'
 import {net} from '../net'
+import {getStore,connect}from '../flux'
 const cn = require('classnames/bind').bind(require('./demo.scss'))
 
-const reducer = (state = 'begin test', action)=> {
+const reducer = (state = 'begin test', action) => {
     switch (action.type) {
         case 'test':
-            return 'testing'
+            return action.data
         default:
             return state
     }
 }
 
+const action = (data) => {
+    return {
+        type: 'test',
+        data: data
+    }
+}
+
+//路由列表
 const routes = [{
     id: 'Comp1',
     url: '/',
     name: '演示文稿1',
-    component: (cb)=> {
+    component: (cb) => {
         cb(Comp1)
     }
 }, {
     id: 'Comp2',
     url: '/comp2',
     name: '演示文稿2',
-    component: (cb)=> {
+    component: (cb) => {
         cb(Comp2)
     }
 }, {
     id: 'Click',
     url: '/Click',
     name: '异步测试',
-    component: (cb)=> {
+    component: (cb) => {
         cb(Click)
     }
 }]
 
+//组件1
 const Comp1 = props =>
     <div>Comp1</div>
 
+//组件2,附带redux效果
 const Comp2 = props =>
-    <div>Comp2</div>
+    <div><Comp2Input /></div>
+
+class Comp2Input extends React.Component {
+    constructor(...props){
+        super(...props)
+        this.submitHandle = this.submitHandle.bind(this)
+    }
+
+    submitHandle(){//直接触发redux
+        getStore().dispatch(action(this.input.value))
+    }
+
+    render() {
+        return (
+            <div>
+                <input type="text" ref={ref=>this.input = ref}/>
+                <button onClick={this.submitHandle}>触发Action</button>
+                <Comp2Value />
+            </div>
+        )
+    }
+}
+
+const Comp2Value = connect((state)=>{
+    return {
+        data:state.reducer
+    }
+})(props =><div>{props.data}</div>)
+
 
 class Click extends React.Component {
     constructor(...props) {
@@ -58,11 +96,11 @@ class Click extends React.Component {
         net({
             method: 'GET',
             url: 'https://file.mahoooo.com/res/policy/get'
-        }).suc((result)=> {
+        }).suc((result) => {
             this.setState({
                 info: JSON.stringify(result)
             })
-        }).suc((result)=> {
+        }).suc((result) => {
             console.log(123)
         }).send()
     }
@@ -83,7 +121,7 @@ entry({
         <Link to="/Click">Click</Link>
     </div>),
     className: cn('demo'),
-    renderCb: ()=> {
+    renderCb: () => {
         console.log('render success!')
     }
 })

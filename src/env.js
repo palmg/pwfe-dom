@@ -3,31 +3,57 @@
  */
 
 /**
- * 环境配置包。为了统一所有项目的状态，目前支持运行模式配置和本地开发模式配置
- * 请在运行之前配置
+ * dom包运行环境配置。通常情况下可以使用webpack的DefinePlugin插件来定义
  */
+
 /**
- * 获取运行模式[DEV|SITE],如果已经通过webpack预设了模式__RunMode。则返回预设值，如果没有，返回默认值
- * @return {string}
+ * 宏定义history模式的枚举值
+ * @type {{Hash: number, Browser: number}}
  */
-export const getRunMode = ()=> {
-    let __runMode
-    !__runMode && (()=> {
-        try {
-            __runMode = __RunMode
-        } catch (e) {
-        }
-    })()
-    return __runMode || "SITE"
+export const HistoryType = {
+    Hash:1, //hash模式
+    Browser:2 //浏览器路径模式
 }
 
-export const getLocal = ()=> {
-    let __local
-    !__local && (()=> {
-        try {
-            __local = __Local
-        } catch (e) {
-        }
-    })()
-    return typeof __local === "undefined" ? false : __local
+/**
+ * 获取history的模式，可以通过DefinePlugin.__History设定值，取值[Hash|Browser],
+ * 定义方式：
+ * {
+ *    __History:JSON.stringify('Browser')或"'Browser'"
+ * }
+ */
+export const getHisType = ()=>{
+    let history;
+    try{
+        history = HistoryType[__History]
+    }catch(e){
+        console.warn('DefinePlugin plugin must define __HistoryType value ')
+    }
+    return history || HistoryType.Hash
+}
+
+/**
+ * 宏定义Redux输出日志的枚举值
+ * @type {{None: number, Detail: number}}
+ */
+export const FluxLogLevel = {
+    None:1, //什么都不输出
+    Detail:2 //输出每一次store变更的前后值以及变更内容
+}
+
+/**
+ * 获取redux的日志输出等级，可以通过DefinePlugin.__FluxLogLevel设定值，取值[Hash|Browser],
+ * 定义方式：
+ * {
+ *    __FluxLogLevel:JSON.stringify('Detail')或"'Detail'"
+ * }
+ */
+export const getFluxLogLevel = () => {
+    let logLevel;
+    try{
+        logLevel = FluxLogLevel[__FluxLogLevel]
+    }catch(e){
+        console.warn('DefinePlugin plugin must define __FluxLogLevel value ')
+    }
+    return logLevel || FluxLogLevel.Detail
 }

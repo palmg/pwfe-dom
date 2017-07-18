@@ -116,7 +116,5 @@ var entry = function entry(options) {
     }
 };
 
-// commonjs
 module.exports = entry;
-// es6 default export compatibility
 module.exports.default = module.exports;

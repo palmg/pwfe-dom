@@ -1,13 +1,13 @@
 {
   "name": "pwfe-dom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "palmg web front end dom",
   "main": "",
   "scripts": {
     "test": "jest",
     "babel": "babel ./src/ -d ./",
     "build": "npm run babel & npm run test",
-    "demo": "webpack-dev-server --progress --colors --inline --config ./demo/webpack.client"
+    "demo": "webpack-dev-server --progress --colors --inline --config ./example/webpack.client"
   },
   "repository": {
     "type": "git",
@@ -49,8 +49,8 @@
     "react": "^15.5.0",
     "react-dom": "^15.5.0",
     "react-redux": "^4.4.6",
-    "react-router": "^4.1.1",
-    "react-router-dom": "^4.1.1",
+    "react-router": "^4.1.2",
+    "react-router-dom": "^4.1.2",
     "redux": "^3.6.0",
     "redux-logger": "^2.10.2",
     "redux-thunk": "^2.1.0",

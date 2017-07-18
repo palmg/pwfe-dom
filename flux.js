@@ -17,16 +17,17 @@ var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var reduxObj = require('react-redux'); /**
+                                        * Created by chkui on 2016/12/13.
+                                        * 通用redux工具。
+                                        */
 //中间渲染组件
 
-/**
- * Created by chkui on 2016/12/13.
- * 通用redux工具。
- */
 var store = void 0,
     //本地存储store对象
 apply = void 0; //中间件工具
-if (!(0, _util.isServerEvn)() && (0, _env.getRunMode)() === "DEV") {
+if (!(0, _util.isServerEvn)() && (0, _env.getFluxLogLevel)() === _env.FluxLogLevel.Detail) {
+    //如果是在服务器端，不会输出详细的store变更信息
     var createLogger = require('redux-logger'),
         //日志工具
     loggerMiddleware = createLogger(); //创建日志
@@ -58,8 +59,10 @@ var getStore = exports.getStore = function getStore() {
 };
 
 var flux = {
+    connect: reduxObj.connect,
     buildStore: buildStore,
     getStore: getStore
 };
 
-exports.default = flux;
+module.exports = flux;
+module.exports.default = module.exports;

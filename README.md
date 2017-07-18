@@ -202,14 +202,14 @@ defImg | string | 设定默认图片。
 
 ## flux
 `flux`提供了redux相关的支持功能。提供的接口包括`buildStore`、`getStore`。
-###　 buildStore
+### buildStore
 `buildStore`提供构建[store][1]实例的功能。
 ```JavaScript
 import {buildStore} from 'pwfe-dom/flux'
 const store = buildStore(reducer, window.REDUX_STATE)
 ```
 接口 | 类型 |说明
------ | ---- | --- 
+----- | ---- | ---
 reducer | object | 设定`redux`的[reducer][2]。其结构为`{reducerName:function()}。
 loaderStore | object | 设定已有的store对象，一般用于前后端同构渲染。
 
@@ -225,6 +225,20 @@ import flux from 'pwfe-dom/flux'
 const store = buildStore(reducer, window.REDUX_STATE)
 const store = getStore()
 ```
+### 设置日志输出等级
+可以通过webpack的DefinePlugin设定redux的日志输出等级。通过以下方式设置：
+```JavaScript
+ new webpack.DefinePlugin({
+    __FluxLogLevel:"'None'" //JSON.stringify('None')
+ }）
+```
+设置变量说明
+
+值 |说明
+----- | ----
+'None' | 什么日志也不输出
+'Detail' | 输出Redux变更的详细日志，包括：变更之前的数据状态，变更之后的数据状态，以及变更的值。
+
 ## net
 提供前后端异步请求的功能。前端请求用ajax实现、后台请求使用nodejs提供的http包实现。`net`模块中提供`net`、`get`和`post`方法。所有的请求返回一个`serverNetwork`实例或一个`browserNetwork`实例。通过函数式的方式来获取数据，回调提供3个方法`suc`、`err`，`headers`，例如：
 ```JavaScript
@@ -235,7 +249,7 @@ net({
 }).suc((data)=>{})
   .err((err,msg)=>{})
   .headers((header)=>{})
-  
+
 get('/myPath/value')
   .suc((data)=>{})
   .err((err,msg)=>{})
@@ -251,7 +265,7 @@ post('/myPath/value',{key:'kye',value:'value'})
 net传递的是一个options对象——`net(options)`。下面是options的参数：
 
 接口 | 类型 | 说明
------ | ----- | ----- 
+----- | ----- | -----
 method | string | 请求的方法`GET`或`POST`。
 url | string | 请求地址。
 data | object或string | 要传递的数据。可以是一段字符串，或者是一个JSON结构的对象。
@@ -261,14 +275,14 @@ query | object | 请求的查询字段，类似的get请求的？参数。
 GET请求。
 
 接口 | 类型 | 说明
------ | ---- | --- 
+----- | ---- | ---
 url | string | 请求地址。
 query | object | 请求的查询字段，类似的get请求的？参数。
 ### post方法
 POST请求。
 
 接口 | 类型 | 说明
------ | ---- | --- 
+----- | ---- | ---
 url | string | 请求地址。
 query | object | 请求的查询字段，类似的get请求的？参数。
 
@@ -294,7 +308,21 @@ browser提供了多个路由方法：
 ----- | ----
 local | 通过服务器跳转。跳转石会访问服务器，浏览器重新刷新页面。原有的内存数据会丢失。<br> 调用方法：`browser.local('/myPath')`
 forward | 浏览器向前跳转，使用该方法时不会发生服务器请求，只会发生react组件替换。<br>若不传入url参数，则浏览器会发生前进一页的行为。<br>若传入url参数，浏览器会自行跳转到对应url。<br>调用方法：`browser.forward('/myPath')`
-back | 浏览器回滚，不会发生服务器请求。<br>调用方法：`browser.back()`
+back | 浏览器回滚，不会发生服务器请求。<br>调用方法：`browser.back()
+
+### 设置history的类型
+可以通过webpack的DefinePlugin设定react-route的history类型。通过以下方式设置：
+```JavaScript
+ new webpack.DefinePlugin({
+    __History:"'Browser'" //JSON.stringify('Browser')
+ }）
+```
+设置变量说明
+
+值 |说明
+----- | ----
+'Hash' | 类似于http://domain(:port)/#/path这样格式的URL。可参看关于hash的说明:https://reacttraining.com/react-router/core/api/history
+'Browser' | 标准的浏览器格式：http(s)://domain(:port)/path
 
 ## util
 **util**提供了最基础的工具。包括`getComponentName`、`isServerEvn`、`asyncLoader`和`safeGetValue`。

@@ -5,11 +5,11 @@
 
 import React from 'react'
 import {isServerEvn, getComponentName} from './util'
-import {getRunMode, getLocal}from './env'
+import {HistoryType, getHisType}from './env'
 import createBrowserHistory from 'history/createBrowserHistory'
 import createHashHistory from 'history/createHashHistory'
 import {Router, Route, Link, Redirect, StaticRouter, withRouter} from 'react-router-dom'//路由
-const history = !isServerEvn() && (getRunMode() === "SITE" && !getLocal() ? createBrowserHistory() : createHashHistory());
+const history = !isServerEvn() && (getHisType() === HistoryType.Browser ? createBrowserHistory() : createHashHistory());
 
 /**
  * 服务器控制类

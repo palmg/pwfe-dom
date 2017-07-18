@@ -74,13 +74,9 @@ var Tag = {
    *  }
    */
   A: _a2.default
-};
-
-// commonjs
-/**
- * Created by chkui on 2017/5/27.
- */
+}; /**
+    * Created by chkui on 2017/5/27.
+    */
 
 module.exports = Tag;
-// es6 default export compatibility
 module.exports.default = module.exports;

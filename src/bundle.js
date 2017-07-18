@@ -43,4 +43,5 @@ const bundle = (initComponent, getComponent)=> {
     }
 }
 
-export default bundle
+module.exports = bundle
+module.exports.default = module.exports
