@@ -69,7 +69,9 @@ const Comp1 = props => {
 const Comp1Next = reRoute()(props => {
     return (<div>
         A picture ：
-        <Tag.Icon alt="测试图片" src="bank"/>
+        <Tag.Icon alt="测试图片" src="bank" onClick={(e)=>{
+            props.browser.local(props.browser.path())
+        }}/>
     </div>)
 })
 
