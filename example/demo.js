@@ -6,8 +6,13 @@ import React from 'react'
 import {Link} from '../router'
 import entry from '../entry'
 import {net} from '../net'
-import {getStore,connect}from '../flux'
+import {reRoute} from '../router'
+import {getStore, connect}from '../flux'
+import Tag from '../tag'
+import {res} from './res/res'
 const cn = require('classnames/bind').bind(require('./demo.scss'))
+
+Tag.setIcon(res)
 
 const reducer = (state = 'begin test', action) => {
     switch (action.type) {
@@ -34,6 +39,13 @@ const routes = [{
         cb(Comp1)
     }
 }, {
+    id: 'Comp1Ex',
+    url: '/comp1',
+    name: '演示文稿1',
+    component: (cb) => {
+        cb(Comp1)
+    }
+}, {
     id: 'Comp2',
     url: '/comp2',
     name: '演示文稿2',
@@ -42,7 +54,7 @@ const routes = [{
     }
 }, {
     id: 'Click',
-    url: '/Click',
+    url: '/click',
     name: '异步测试',
     component: (cb) => {
         cb(Click)
@@ -50,27 +62,36 @@ const routes = [{
 }]
 
 //组件1
-const Comp1 = props =>
-    <div>Comp1</div>
+const Comp1 = props => {
+    return (<Comp1Next/>)
+}
+
+const Comp1Next = reRoute()(props => {
+    return (<div>
+        A picture ：
+        <Tag.Icon alt="测试图片" src="bank"/>
+    </div>)
+})
 
 //组件2,附带redux效果
 const Comp2 = props =>
     <div><Comp2Input /></div>
 
+//触发redux数据更新的组件
 class Comp2Input extends React.Component {
-    constructor(...props){
+    constructor(...props) {
         super(...props)
         this.submitHandle = this.submitHandle.bind(this)
     }
 
-    submitHandle(){//直接触发redux
+    submitHandle() {//直接触发redux
         getStore().dispatch(action(this.input.value))
     }
 
     render() {
         return (
             <div>
-                <input type="text" ref={ref=>this.input = ref}/>
+                <input type="text" ref={ref => this.input = ref}/>
                 <button onClick={this.submitHandle}>触发Action</button>
                 <Comp2Value />
             </div>
@@ -78,11 +99,11 @@ class Comp2Input extends React.Component {
     }
 }
 
-const Comp2Value = connect((state)=>{
+const Comp2Value = connect((state) => {
     return {
-        data:state.reducer
+        data: state.reducer
     }
-})(props =><div>{props.data}</div>)
+})(props => <div>{props.data}</div>)
 
 
 class Click extends React.Component {
@@ -116,9 +137,9 @@ entry({
     reducer: {reducer},
     routes: routes,
     children: (<div>
-        <Link to="/">comp1</Link>
+        <Link to="/comp1">comp1</Link>
         <Link to="/comp2">comp2</Link>
-        <Link to="/Click">Click</Link>
+        <Link to="/click">click</Link>
     </div>),
     className: cn('demo'),
     renderCb: () => {

@@ -302,13 +302,15 @@ const MyComponent = reRoute()(props=>{
     return(<div>组件</div>)
 })
 ```
-browser提供了多个路由方法：
+browser提供了多个路由方法和属性值：
 
 接口 | 说明
 ----- | ----
 local | 通过服务器跳转。跳转石会访问服务器，浏览器重新刷新页面。原有的内存数据会丢失。<br> 调用方法：`browser.local('/myPath')`
 forward | 浏览器向前跳转，使用该方法时不会发生服务器请求，只会发生react组件替换。<br>若不传入url参数，则浏览器会发生前进一页的行为。<br>若传入url参数，浏览器会自行跳转到对应url。<br>调用方法：`browser.forward('/myPath')`
 back | 浏览器回滚，不会发生服务器请求。<br>调用方法：`browser.back()
+path | 获取当前页面的访问的相对路径。如http://domain(:port)/myPath/myParam 调用`browser.path()`会返回`'/myPath/myParam'`
+
 
 ### 设置history的类型
 可以通过webpack的DefinePlugin设定react-route的history类型。通过以下方式设置：

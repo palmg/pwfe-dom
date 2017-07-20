@@ -49,7 +49,7 @@ var browser = {
      * @param url 要跳转的地址
      */
     local: function local(url) {
-        //TODO 服务器跳转暂未实现
+        window.location.href = url;
     },
     /**
      * 浏览器向前跳转，使用该方法时不会发生服务器请求，只会发生react组件替换。
@@ -76,22 +76,22 @@ var browser = {
  */
 var reRoute = function reRoute() {
     return function (Wrap) {
-        var ReRoute = function (_React$Component) {
-            _inherits(ReRoute, _React$Component);
+        var NextWrapper = function (_React$Component) {
+            _inherits(NextWrapper, _React$Component);
 
-            function ReRoute() {
+            function NextWrapper() {
                 var _ref;
 
-                _classCallCheck(this, ReRoute);
+                _classCallCheck(this, NextWrapper);
 
                 for (var _len = arguments.length, props = Array(_len), _key = 0; _key < _len; _key++) {
                     props[_key] = arguments[_key];
                 }
 
-                return _possibleConstructorReturn(this, (_ref = ReRoute.__proto__ || Object.getPrototypeOf(ReRoute)).call.apply(_ref, [this].concat(props)));
+                return _possibleConstructorReturn(this, (_ref = NextWrapper.__proto__ || Object.getPrototypeOf(NextWrapper)).call.apply(_ref, [this].concat(props)));
             }
 
-            _createClass(ReRoute, [{
+            _createClass(NextWrapper, [{
                 key: 'shouldComponentUpdate',
                 value: function shouldComponentUpdate(nextProps, nextState) {
                     return this.props !== nextProps;
@@ -99,14 +99,20 @@ var reRoute = function reRoute() {
             }, {
                 key: 'render',
                 value: function render() {
-                    var props = Object.assign({}, this.props, { browser: browser });
+                    var _this2 = this;
+
+                    var _browser = Object.assign({}, { path: function path() {
+                            return _this2.props.match.path;
+                        } }, browser);
+                    var props = Object.assign({}, this.props, { browser: _browser });
                     return _react2.default.createElement(Wrap, props);
                 }
             }]);
 
-            return ReRoute;
+            return NextWrapper;
         }(_react2.default.Component);
 
+        var ReRoute = (0, _reactRouterDom.withRouter)(NextWrapper);
         ReRoute.displayName = 'ReRoute(' + (0, _util.getComponentName)(Wrap) + ')';
         return ReRoute;
     };

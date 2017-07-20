@@ -21,7 +21,7 @@ const browser = {
      * @param url 要跳转的地址
      */
     local: (url)=> {
-        //TODO 服务器跳转暂未实现
+        window.location.href = url
     },
     /**
      * 浏览器向前跳转，使用该方法时不会发生服务器请求，只会发生react组件替换。
@@ -48,7 +48,7 @@ const browser = {
  */
 const reRoute = () => {
     return (Wrap) => {
-        class ReRoute extends React.Component {
+        class NextWrapper extends React.Component {
             constructor(...props) {
                 super(...props);
             }
@@ -58,10 +58,12 @@ const reRoute = () => {
             }
 
             render() {
-                const props = Object.assign({}, this.props, {browser: browser});
+                const _browser = Object.assign({},{path:()=>this.props.match.path},browser)
+                const props = Object.assign({}, this.props, {browser: _browser});
                 return (<Wrap {...props} />)
             }
         }
+        const ReRoute = withRouter(NextWrapper)
         ReRoute.displayName = `ReRoute(${getComponentName(Wrap)})`;
         return ReRoute;
     }

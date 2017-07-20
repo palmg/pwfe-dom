@@ -64,7 +64,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
             __FluxLogLevel:"'None'", //运行模式相关配置
-            __History:"'Browser'" //本地模式
+            __History:"'Hash'" //本地模式
         }),
         new webpack.NormalModuleReplacementPlugin(
             /\/iconv-loader$/, 'node-noop'

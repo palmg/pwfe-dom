@@ -4,12 +4,12 @@
 
 
 import React from 'react'
-import {reRoute} from '../router'
+import {reRoute, Router, StaticRouter} from '../router'
 import renderer from 'react-test-renderer'
 
-test("Tag.Img Test", ()=> {
-    const InnerComp = props =>{
-        return(
+test("Tag.router Test", () => {
+    const InnerComp = props => {
+        return (
             <div>
                 browser.local:{props.browser.local.toString()}
                 browser.forward:{props.browser.forward.toString()}
@@ -20,6 +20,6 @@ test("Tag.Img Test", ()=> {
     const Comp = reRoute()(InnerComp)
     const comp = renderer.create(<Comp />)
 
-    let tree = comp.toJSON();
+    let tree = comp.toJSON(); //withRoute 测试异常
     expect(tree).toMatchSnapshot();
 })

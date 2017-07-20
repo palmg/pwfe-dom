@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Tag.Img Test 1`] = `
+exports[`Tag.router Test 1`] = `
 <div>
   browser.local:
   function local(url) {
-          //TODO 服务器跳转暂未实现
+          window.location.href = url;
       }
   browser.forward:
   function forward(url) {
