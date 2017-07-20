@@ -40,7 +40,7 @@ const routes = [{
     }
 }, {
     id: 'Comp1Ex',
-    url: '/comp1',
+    url: '/comp1/:id',
     name: '演示文稿1',
     component: (cb) => {
         cb(Comp1)
@@ -70,7 +70,7 @@ const Comp1Next = reRoute()(props => {
     return (<div>
         A picture ：
         <Tag.Icon alt="测试图片" src="bank" onClick={(e)=>{
-            props.browser.local(props.browser.path())
+            props.browser.local(props.browser.url())
         }}/>
     </div>)
 })
@@ -139,7 +139,7 @@ entry({
     reducer: {reducer},
     routes: routes,
     children: (<div>
-        <Link to="/comp1">comp1</Link>
+        <Link to="/comp1/12850">comp1</Link>
         <Link to="/comp2">comp2</Link>
         <Link to="/click">click</Link>
     </div>),

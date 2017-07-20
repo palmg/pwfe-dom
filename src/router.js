@@ -58,7 +58,10 @@ const reRoute = () => {
             }
 
             render() {
-                const _browser = Object.assign({},{path:()=>this.props.match.path},browser)
+                const _browser = Object.assign({},
+                    {path:()=>this.props.match.path},
+                    {url:()=>this.props.match.url},
+                    browser)
                 const props = Object.assign({}, this.props, {browser: _browser});
                 return (<Wrap {...props} />)
             }

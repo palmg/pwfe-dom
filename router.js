@@ -103,6 +103,8 @@ var reRoute = function reRoute() {
 
                     var _browser = Object.assign({}, { path: function path() {
                             return _this2.props.match.path;
+                        } }, { url: function url() {
+                            return _this2.props.match.url;
                         } }, browser);
                     var props = Object.assign({}, this.props, { browser: _browser });
                     return _react2.default.createElement(Wrap, props);

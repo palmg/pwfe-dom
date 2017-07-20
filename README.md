@@ -309,7 +309,8 @@ browser提供了多个路由方法和属性值：
 local | 通过服务器跳转。跳转石会访问服务器，浏览器重新刷新页面。原有的内存数据会丢失。<br> 调用方法：`browser.local('/myPath')`
 forward | 浏览器向前跳转，使用该方法时不会发生服务器请求，只会发生react组件替换。<br>若不传入url参数，则浏览器会发生前进一页的行为。<br>若传入url参数，浏览器会自行跳转到对应url。<br>调用方法：`browser.forward('/myPath')`
 back | 浏览器回滚，不会发生服务器请求。<br>调用方法：`browser.back()
-path | 获取当前页面的访问的相对路径。如http://domain(:port)/myPath/myParam 调用`browser.path()`会返回`'/myPath/myParam'`
+path | 获取当前页面的访问的相对地址。如http://domain(:port)/myPath/myParam 调用`browser.path()`会返回`'/myPath/myParam'`。**如果在routes中将路径配置为`/myPath/:pamram`,则获取到的数据为`/myPath/:pamram`**
+url | 获取当前页面的访问的相对路径。如http://domain(:port)/myPath/myParam 调用`browser.path()`会返回`'/myPath/myParam'`。**如果在routes中将路径配置为`/myPath/:pamram`,则获取到的数据为`/myPath/myParam`**
 
 
 ### 设置history的类型
