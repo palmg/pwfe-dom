@@ -19,6 +19,13 @@ let loader;
     }
 }))
 
+let _withCredentials = (()=>{
+    try{
+        return __WithCredentials
+    }catch(e){
+        return false
+    }
+})()
 /**
  *  通用网络请求工具
  *  @constructor {
@@ -27,6 +34,7 @@ let loader;
  *      @param {object|string} data: 要传递的数据
  *      @param {object} header: 要提交的头部 例如 {"Accept":"application/json"}
  *      @param {object} query: 服务器调用的query admin?a=a&b=b等价于{a:'a',b:'b'}
+ *      @param {boolean} withCredentials: 标记是否跨域传递cookie。为了便于在测试环境中全局使用，可以在webpack中全局配置__WithCredentials=true
  *  }
  */
 class browserNetwork {
@@ -52,6 +60,7 @@ class browserNetwork {
             }
         })();
         params.query && req.query(params.query);
+        (params.withCredentials || _withCredentials) && req.withCredentials();
         req.end((err, res)=> {
             if (!err && res.ok) {
                 exeMapping(cb, 'suc', res.body)

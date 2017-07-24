@@ -25,6 +25,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *     {object|string} data: 要传递的数据
  *     {object} header: 要提交的头部 例如 {"Accept":"application/json"}
  *     {object} query: 服务器调用的query admin?a=a&b=b等价于{a:'a',b:'b'}
+ *     {boolean} credentials: 标记是否跨域传递cookie
  *  }
  * @returns {network}
  */
@@ -41,7 +42,7 @@ var net = function net(params) {
 /**
  * Created by chkui on 2017/5/22.
  */
-var get = function get(url, query) {
+var get = function get(url, options) {
     return net({
         url: url,
         query: query
@@ -54,7 +55,7 @@ var get = function get(url, query) {
  * @param data: 要传递的数据
  * @returns {network}
  */
-var post = function post(url, data) {
+var post = function post(url, data, options) {
     return net({
         url: url,
         method: 'POST',

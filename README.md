@@ -271,6 +271,7 @@ url | string | 请求地址。
 data | object或string | 要传递的数据。可以是一段字符串，或者是一个JSON结构的对象。
 header | object | 请求的头部，格式为：`{"Accept":"application/json"}`。
 query | object | 请求的查询字段，类似的get请求的？参数。
+withCredentials | boolean | 标记是否跨域传递cookie。为了便于在测试环境中全局使用，可以在webpack中全局配置__WithCredentials=true
 ### get方法
 GET请求。
 

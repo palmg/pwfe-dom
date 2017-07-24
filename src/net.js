@@ -13,6 +13,7 @@ import browserNetwork from './lib/net/browserNetwork'
  *     {object|string} data: 要传递的数据
  *     {object} header: 要提交的头部 例如 {"Accept":"application/json"}
  *     {object} query: 服务器调用的query admin?a=a&b=b等价于{a:'a',b:'b'}
+ *      @param {boolean} withCredentials: 标记是否跨域传递cookie。为了便于在测试环境中全局使用，可以在webpack中全局配置__WithCredentials=true
  *  }
  * @returns {network}
  */
@@ -26,7 +27,7 @@ const net = (params)=> {
  * @param query: 服务器调用的query admin?a=a&b=b等价于{a:'a',b:'b'}
  * @returns {network}
  */
-const get = (url, query) => {
+const get = (url, options) => {
     return net({
         url: url,
         query: query
@@ -39,7 +40,7 @@ const get = (url, query) => {
  * @param data: 要传递的数据
  * @returns {network}
  */
-const post = (url, data) => {
+const post = (url, data, options) => {
     return net({
         url: url,
         method: 'POST',

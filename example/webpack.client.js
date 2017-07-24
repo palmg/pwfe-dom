@@ -63,6 +63,7 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            __WithCredentials:true, //全局配置withCredentials
             __FluxLogLevel:"'None'", //运行模式相关配置
             __History:"'Hash'" //本地模式
         }),
