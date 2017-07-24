@@ -27,7 +27,7 @@ const net = (params)=> {
  * @param query: 服务器调用的query admin?a=a&b=b等价于{a:'a',b:'b'}
  * @returns {network}
  */
-const get = (url, options) => {
+const get = (url, query) => {
     return net({
         url: url,
         query: query
@@ -40,7 +40,7 @@ const get = (url, options) => {
  * @param data: 要传递的数据
  * @returns {network}
  */
-const post = (url, data, options) => {
+const post = (url, data) => {
     return net({
         url: url,
         method: 'POST',

@@ -25,7 +25,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *     {object|string} data: 要传递的数据
  *     {object} header: 要提交的头部 例如 {"Accept":"application/json"}
  *     {object} query: 服务器调用的query admin?a=a&b=b等价于{a:'a',b:'b'}
- *     {boolean} credentials: 标记是否跨域传递cookie
+ *      @param {boolean} withCredentials: 标记是否跨域传递cookie。为了便于在测试环境中全局使用，可以在webpack中全局配置__WithCredentials=true
  *  }
  * @returns {network}
  */
@@ -42,7 +42,7 @@ var net = function net(params) {
 /**
  * Created by chkui on 2017/5/22.
  */
-var get = function get(url, options) {
+var get = function get(url, query) {
     return net({
         url: url,
         query: query
@@ -55,7 +55,7 @@ var get = function get(url, options) {
  * @param data: 要传递的数据
  * @returns {network}
  */
-var post = function post(url, data, options) {
+var post = function post(url, data) {
     return net({
         url: url,
         method: 'POST',
