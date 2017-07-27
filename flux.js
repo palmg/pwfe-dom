@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.getStore = exports.buildStore = undefined;
+exports.subscribe = exports.dispatch = exports.getStore = exports.buildStore = undefined;
 
 var _redux = require('redux');
 
@@ -58,10 +58,28 @@ var getStore = exports.getStore = function getStore() {
     return store;
 };
 
+/**
+ * 执行对象的action
+ * @param action
+ */
+var dispatch = exports.dispatch = function dispatch(action) {
+    store.dispatch(action);
+};
+
+/**
+ * 新增store变更的监听器
+ * @param listener
+ */
+var subscribe = exports.subscribe = function subscribe(listener) {
+    store.subscribe(listener);
+};
+
 var flux = {
     connect: reduxObj.connect,
     buildStore: buildStore,
-    getStore: getStore
+    getStore: getStore,
+    dispatch: dispatch,
+    subscribe: subscribe
 };
 
 module.exports = flux;

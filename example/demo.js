@@ -7,13 +7,12 @@ import {Link} from '../router'
 import entry from '../entry'
 import {net} from '../net'
 import {reRoute} from '../router'
-import {getStore, connect}from '../flux'
+import {getStore, connect, dispatch, subscribe}from '../flux'
 import Tag from '../tag'
 import {res} from './res/res'
 const cn = require('classnames/bind').bind(require('./demo.scss'))
 
 Tag.setIcon(res)
-
 const reducer = (state = 'begin test', action) => {
     switch (action.type) {
         case 'test':
@@ -87,7 +86,7 @@ class Comp2Input extends React.Component {
     }
 
     submitHandle() {//直接触发redux
-        getStore().dispatch(action(this.input.value))
+        dispatch(action(this.input.value))
     }
 
     render() {
@@ -149,3 +148,7 @@ entry({
     }
 })
 
+
+subscribe(()=>{
+    console.log('current store' , getStore().getState())
+})

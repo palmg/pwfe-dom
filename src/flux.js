@@ -41,10 +41,28 @@ export const getStore = ()=> {
     return store;
 };
 
+/**
+ * 执行对象的action
+ * @param action
+ */
+export const dispatch = (action)=>{
+    store.dispatch(action)
+}
+
+/**
+ * 新增store变更的监听器
+ * @param listener
+ */
+export const subscribe = (listener)=>{
+    store.subscribe(listener)
+}
+
 const flux = {
     connect:reduxObj.connect,
     buildStore: buildStore,
-    getStore: getStore
+    getStore: getStore,
+    dispatch: dispatch,
+    subscribe: subscribe
 };
 
 module.exports = flux

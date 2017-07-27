@@ -225,6 +225,23 @@ import flux from 'pwfe-dom/flux'
 const store = buildStore(reducer, window.REDUX_STATE)
 const store = getStore()
 ```
+### dispatch
+执行`action`更新[store][1]的数据，使用前必须先使用`buildStore`构建[store][1]。
+```JavaScript
+import {dispatch} from 'pwfe-dom/flux'
+const store = buildStore(reducer, window.REDUX_STATE)
+const store = dispatch(action(data))
+```
+### subscribe
+用于监听[store][1]的变化，使用前必须先使用`buildStore`构建[store][1]。
+```JavaScript
+import {subscribe, getStore} from 'pwfe-dom/flux'
+const store = buildStore(reducer, window.REDUX_STATE)
+const store = subscribe(()=>{
+    console.log('current store' , getStore().getState())
+})
+```
+
 ### 设置日志输出等级
 可以通过webpack的DefinePlugin设定redux的日志输出等级。通过以下方式设置：
 ```JavaScript
