@@ -52,7 +52,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *  {object} reducer：redux的reducer。结构为{key:value}
  *  {array} routes：路由列表
  *  {component} app: 用于前后端同构渲染的app。该App会被传入 init参数和 routes参数。
+ *  {component} header: 在app中显示的头部元素，如果传入了自定义的app，则会传入到props.header中，组件会在children之前显示
  *  {component} children: 在app中显示的子元素，如果传入了自定义的app，则会传入到props.children中
+ *  {component} footer: 在app中显示的头部元素，如果传入了自定义的app，则会传入到props.footer中，组件会在routes之后显示
  *  {string} className: app的样式
  *  {function} renderCb: 渲染完成的回调
  * }
@@ -68,6 +70,8 @@ var entry = function entry(options) {
         app = options.app,
         renderCb = options.renderCb,
         className = options.className,
+        header = options.header,
+        footer = options.footer,
         innerWindow = window || {},
         store = (0, _flux.buildStore)(reducer, innerWindow.REDUX_STATE),
         serverParam = innerWindow.SERVER_PARAMS || {},
@@ -91,7 +95,7 @@ var entry = function entry(options) {
                             { history: _router.history },
                             _react2.default.createElement(
                                 App,
-                                { className: className, init: { comp: comp, id: initID }, routes: routes },
+                                { className: className, init: { comp: comp, id: initID }, routes: routes, header: header, footer: footer },
                                 options.children
                             )
                         )

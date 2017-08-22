@@ -19,7 +19,7 @@ export const getComponentName = (WrappedComponent) => {
  * @return {boolean}。true: 浏览器环境，false：服务器环境
  */
 export const isServerEvn = () =>{
-    return (typeof global == 'object') && (global.global === global);
+    return (typeof global === 'object') && (global.global === global);
 }
 
 /**
@@ -30,6 +30,7 @@ export const isServerEvn = () =>{
  *          onLoad(loadResult);
  *     }。
  *     初始化完成的回调，由于初始化方法是由外部执行，所以当外部完成初始化之后，需要掉这个接口并传入初始化结果通知实例完成初始化。
+ *     或者外部直接执行asyncLoader::onLoad(result) 方法
  * }
  */
 export class asyncLoader {
@@ -37,7 +38,7 @@ export class asyncLoader {
         this.handleList = [];
         this.result = null;
         this.onLoad = this.onLoad.bind(this);
-        params.loader(this.onLoad)
+        params && params.loader && params.loader(this.onLoad)
     }
 
     /**
@@ -49,7 +50,7 @@ export class asyncLoader {
     }
 
     /**
-     * 加载完成的方法，非外部接口
+     * 加载完成的方法
      * @param result
      */
     onLoad(result){

@@ -41,7 +41,9 @@ import DefApp from './app'
  *  {object} reducer：redux的reducer。结构为{key:value}
  *  {array} routes：路由列表
  *  {component} app: 用于前后端同构渲染的app。该App会被传入 init参数和 routes参数。
+ *  {component} header: 在app中显示的头部元素，如果传入了自定义的app，则会传入到props.header中，组件会在children之前显示
  *  {component} children: 在app中显示的子元素，如果传入了自定义的app，则会传入到props.children中
+ *  {component} footer: 在app中显示的头部元素，如果传入了自定义的app，则会传入到props.footer中，组件会在routes之后显示
  *  {string} className: app的样式
  *  {function} renderCb: 渲染完成的回调
  * }
@@ -49,7 +51,7 @@ import DefApp from './app'
  * routes就是定义的路由列表
  */
 const entry = (options) => {
-    const {reducer, routes, app, renderCb, className} = options,
+    const {reducer, routes, app, renderCb, className, header, footer} = options,
         innerWindow = window || {}, //防止window不存在时属性运算异常
         store = buildStore(reducer, innerWindow.REDUX_STATE),
         serverParam = innerWindow.SERVER_PARAMS || {},
@@ -61,7 +63,7 @@ const entry = (options) => {
                 render(
                     <Provider store={store}>
                         <Router history={history}>
-                            <App className={className} init={{comp, id: initID}} routes={routes}>
+                            <App className={className} init={{comp, id: initID}} routes={routes} header={header} footer={footer}>
                                 {options.children}
                             </App>
                         </Router>

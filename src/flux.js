@@ -6,16 +6,33 @@ import {createStore/*store创建器*/, combineReducers/*reducer合并工具*/, a
 const reduxObj = require('react-redux')
 import {isServerEvn} from './util'
 import {FluxLogLevel, getFluxLogLevel}from './env'
+import {asyncLoader} from './util'
 import thunkMiddleware from 'redux-thunk';//中间渲染组件
 
 let store,//本地存储store对象
-    apply;//中间件工具
+    apply,//中间件工具
+    storeAsync //store的异步处理工具
 if (!isServerEvn() && getFluxLogLevel() === FluxLogLevel.Detail) {//如果是在服务器端，不会输出详细的store变更信息
     const createLogger = require('redux-logger'),//日志工具
         loggerMiddleware = createLogger();//创建日志
     apply = applyMiddleware(thunkMiddleware, loggerMiddleware)
 } else {
     apply = applyMiddleware(thunkMiddleware)
+}
+
+/**
+ * 注册异步执行任务
+ * @param foo
+ */
+const asyncRegister = foo =>{
+    !storeAsync && (storeAsync = new asyncLoader())
+    storeAsync.register(foo)
+}
+/**
+ * 异步执行
+ */
+const asyncExecute = () => {
+    storeAsync && storeAsync.onLoad(true)
 }
 
 /**
@@ -30,6 +47,7 @@ export const buildStore = (reducer = {}, loaderStore) => {
         loaderStore,
         apply
     );
+    asyncExecute()
     return store;
 };
 
@@ -46,7 +64,7 @@ export const getStore = ()=> {
  * @param action
  */
 export const dispatch = (action)=>{
-    store.dispatch(action)
+    asyncRegister(()=>{store.dispatch(action)})
 }
 
 /**
@@ -54,7 +72,7 @@ export const dispatch = (action)=>{
  * @param listener
  */
 export const subscribe = (listener)=>{
-    store.subscribe(listener)
+    asyncRegister(()=>{store.subscribe(listener)})
 }
 
 const flux = {

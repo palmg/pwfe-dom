@@ -73,14 +73,16 @@ render(
 init | object | 系统初始化渲染参数。对象中包含2个参数：`comp`和`id`。<br>`comp`：初始化渲染的页面组件，一般用于前后端同构渲染。这个组件会在第一次渲染之前就传入，放置前后端首屏异构。<br>`id`：初始渲染组件对应的路由表id。
 routes | arrya | 路由列表。结构请看规范中的routes说明。
 className | string | app组件样式。所有App中的子元素都会被一个`div`标签包裹，传入className可以设定这个`div`对应的样式。
-children | react Element |App的子元素。App组件包括2个字元素，一个是路由列表`routes`中的页面组件，一个通过children在列表之前显示的组件。例如可以设定`Link`元素。
+children | react Element | App的子元素。会在路由内容之前显示该内容。
+header | react Element | App头部元素。例如可以设定`Link`元素。
+header | react Element | App页脚元素。用于全站统一显示页脚信息。
 ### entry
 entry是提供前端入口的全局组件。与后端的serverApp组件对应。用于实现前端同构渲染功能。entry中使用默认的App和bundle实现了页面渲染和分片加载。如果有特殊的业务需求，可以使用自定义的App
 ```JavaScript
 import entry from 'pwfe-dom/entry'
 
 entry({
-    reducer: reducer, 
+    reducer: reducer,
     routes: routes,
     children: (<div>
         <Link to="/">comp1</Link>
@@ -95,11 +97,13 @@ entry({
 **参数说明**
 
 接口 | 类型 | 说明
------ | ---- | --- 
+----- | ---- | ---
 reducer | object | redux对应使用的reducer。结构为`{key:function(){}}`
 routes | array | **routes**列表，详见前文的**routes**说明
 app | Element | 用于前后端同构渲染的组件。该App会被传入`init`参数和`routes`参数。不设置默认使用`pwfe-dom/app`组件
+header | Element | 在app中显示的头部元素，如果传入了自定义的app，则会传入到props.header中，组件会在children之前显示。
 children | Element | 在app中显示的子元素，如果使用了自定义App组件，则会传入到props.children中。
+footer | Element | 在app中显示的头部元素，如果传入了自定义的app，则会传入到props.footer中，组件会在routes之后显示。
 className | string | app组件显示的样式，如果使用自定义的App组件，则会传入到props.className中。
 renderCb | function | 渲染成功的回调方法
 

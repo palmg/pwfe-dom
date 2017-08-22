@@ -18,7 +18,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *     init : {comp:后台初始化的组件,id:初始化组件对应的id}
  *     routes : 路由列表
  *     className : app的样式
- *     children : 子元素
+ *     header: 头部元素
+ *     children : 内容子元素
+ *     footer:页脚元素
  * }
  * @return {XML}
  * @constructor
@@ -31,11 +33,13 @@ var App = function App(props) {
     return _react2.default.createElement(
         'div',
         { className: className },
+        props.header,
         props.children,
         routes.map(function (i) {
             return _react2.default.createElement(_router.Route, { key: i.id, exact: true, path: i.url,
                 component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component) });
-        })
+        }),
+        props.footer
     );
 }; /**
     * Created by chkui on 2017/6/26.

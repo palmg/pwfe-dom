@@ -137,11 +137,13 @@ class Click extends React.Component {
 entry({
     reducer: {reducer},
     routes: routes,
-    children: (<div>
+    header: (<div>
         <Link to="/comp1/12850">comp1</Link>
         <Link to="/comp2">comp2</Link>
         <Link to="/click">click</Link>
     </div>),
+    children: (<div>内容</div>),
+    footer: (<div>页脚</div>),
     className: cn('demo'),
     renderCb: () => {
         console.log('render success!')

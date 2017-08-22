@@ -30,7 +30,7 @@ var getComponentName = exports.getComponentName = function getComponentName(Wrap
  * @return {boolean}。true: 浏览器环境，false：服务器环境
  */
 var isServerEvn = exports.isServerEvn = function isServerEvn() {
-    return (typeof global === 'undefined' ? 'undefined' : _typeof(global)) == 'object' && global.global === global;
+    return (typeof global === 'undefined' ? 'undefined' : _typeof(global)) === 'object' && global.global === global;
 };
 
 /**
@@ -41,6 +41,7 @@ var isServerEvn = exports.isServerEvn = function isServerEvn() {
  *          onLoad(loadResult);
  *     }。
  *     初始化完成的回调，由于初始化方法是由外部执行，所以当外部完成初始化之后，需要掉这个接口并传入初始化结果通知实例完成初始化。
+ *     或者外部直接执行asyncLoader::onLoad(result) 方法
  * }
  */
 
@@ -51,7 +52,7 @@ var asyncLoader = exports.asyncLoader = function () {
         this.handleList = [];
         this.result = null;
         this.onLoad = this.onLoad.bind(this);
-        params.loader(this.onLoad);
+        params && params.loader && params.loader(this.onLoad);
     }
 
     /**
@@ -67,7 +68,7 @@ var asyncLoader = exports.asyncLoader = function () {
         }
 
         /**
-         * 加载完成的方法，非外部接口
+         * 加载完成的方法
          * @param result
          */
 

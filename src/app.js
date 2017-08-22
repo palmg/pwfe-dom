@@ -12,7 +12,9 @@ import bundle from './bundle'
  *     init : {comp:后台初始化的组件,id:初始化组件对应的id}
  *     routes : 路由列表
  *     className : app的样式
- *     children : 子元素
+ *     header: 头部元素
+ *     children : 内容子元素
+ *     footer:页脚元素
  * }
  * @return {XML}
  * @constructor
@@ -21,9 +23,11 @@ const App = props => {
     const {init, routes, className} = props;
     return (
         <div className={className}>
+            {props.header}
             {props.children}
             {routes.map(i=><Route key={i.id} exact path={i.url}
                                   component={bundle(init.id === i.id && init.comp, i.component)}/>)}
+            {props.footer}
         </div>
     )
 }
