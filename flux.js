@@ -51,7 +51,8 @@ var asyncRegister = function asyncRegister(foo) {
  * 异步执行
  */
 var asyncExecute = function asyncExecute() {
-    storeAsync && storeAsync.onLoad(true);
+    !storeAsync && (storeAsync = new _util.asyncLoader());
+    storeAsync.onLoad(true);
 };
 
 /**

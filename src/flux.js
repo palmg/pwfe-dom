@@ -33,7 +33,8 @@ const asyncRegister = foo =>{
  * 异步执行
  */
 const asyncExecute = () => {
-    storeAsync && storeAsync.onLoad(true)
+    !storeAsync && (storeAsync = new asyncLoader())
+    storeAsync.onLoad(true)
 }
 
 /**
