@@ -1,3 +1,6 @@
+/**
+ * Created by chkui on 2017/5/27.
+ */
 'use strict';
 
 var _icon = require('./lib/tag/icon');
@@ -74,9 +77,7 @@ var Tag = {
    *  }
    */
   A: _a2.default
-}; /**
-    * Created by chkui on 2017/5/27.
-    */
+};
 
 module.exports = Tag;
 module.exports.default = module.exports;

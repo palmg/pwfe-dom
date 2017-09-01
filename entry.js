@@ -1,3 +1,6 @@
+/**
+ * Created by chkui on 2017/6/26.
+ */
 'use strict';
 
 var _react = require('react');
@@ -60,9 +63,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * }
  * init的结构为{comp 和 id} comp表示首屏渲染的页面以及页面对应的id。
  * routes就是定义的路由列表
- */
-/**
- * Created by chkui on 2017/6/26.
  */
 var entry = function entry(options) {
     var reducer = options.reducer,

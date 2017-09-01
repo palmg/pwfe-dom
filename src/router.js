@@ -2,7 +2,7 @@
  * Created by chkui on 2017/5/11.
  * 通用路由工具组件
  */
-
+'use strict';
 import React from 'react'
 import {isServerEvn, getComponentName} from './util'
 import {HistoryType, getHisType}from './env'

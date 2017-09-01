@@ -1,6 +1,7 @@
 /**
  * Created by chkui on 2017/6/26.
  */
+'use strict';
 import React from 'react'
 import {render} from 'react-dom';
 import {Provider} from 'react-redux'

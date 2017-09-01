@@ -1,10 +1,10 @@
 /**
  * Created by chkui on 2017/5/22.
  */
+'use strict';
 import {isServerEvn} from './util'
 import serverNetwork from './lib/net/serverNetwork'
 import browserNetwork from './lib/net/browserNetwork'
-
 /**
  * 网络服务工具
  * @param {object} params{

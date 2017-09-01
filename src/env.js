@@ -1,7 +1,7 @@
 /**
  * Created by chkui on 2017/6/20.
  */
-
+'use strict';
 /**
  * dom包运行环境配置。通常情况下可以使用webpack的DefinePlugin插件来定义
  */

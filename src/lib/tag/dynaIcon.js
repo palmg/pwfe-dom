@@ -1,10 +1,9 @@
 /**
  * Created by chkui on 2017/6/9.
  */
-
+'use strict';
 import React from 'react'
 import Icon from './icon'
-
 /**
  * 提供激活支持的Icon组件
  * 1）标签组件需要绑定资源路径使用，资源路径的配置文件默认在res/index中。每增加一个图片，都需要增加一个资源引用。

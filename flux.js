@@ -1,3 +1,7 @@
+/**
+ * Created by chkui on 2016/12/13.
+ * 通用redux工具。
+ */
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -17,10 +21,7 @@ var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var reduxObj = require('react-redux'); /**
-                                        * Created by chkui on 2016/12/13.
-                                        * 通用redux工具。
-                                        */
+var reduxObj = require('react-redux');
 //中间渲染组件
 
 var store = void 0,

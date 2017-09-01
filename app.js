@@ -1,3 +1,6 @@
+/**
+ * Created by chkui on 2017/6/26.
+ */
 'use strict';
 
 var _react = require('react');
@@ -41,9 +44,7 @@ var App = function App(props) {
         }),
         props.footer
     );
-}; /**
-    * Created by chkui on 2017/6/26.
-    */
+};
 
 module.exports = App;
 module.exports.default = module.exports;

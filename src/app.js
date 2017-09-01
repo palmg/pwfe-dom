@@ -1,7 +1,7 @@
 /**
  * Created by chkui on 2017/6/26.
  */
-
+'use strict';
 import React from 'react'
 import {Route} from './router'
 import bundle from './bundle'

@@ -1,9 +1,8 @@
 /**
  * Created by chkui on 2017/6/10.
  */
-
+'use strict';
 import React from 'react'
-
 /**
  * 页面分片高阶组件。该组件配合`routes`用于实现页面分片。
  * @param initComponent

@@ -1,6 +1,7 @@
 /**
  * Created by chkui on 2017/5/27.
  */
+'use strict';
 import React from 'react'
 import {isServerEvn} from '../../util'
 import {registerImgHandle, getImg, getDefImg} from './setIcon'

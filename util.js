@@ -1,4 +1,13 @@
+/**
+ * Created by chkui on 2017/6/19.
+ * 基础工具模块
+ */
 'use strict';
+/**
+ * 获取组件的显示名称
+ * @param WrappedComponent 包装组件
+ * @returns {*|string}
+ */
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -10,16 +19,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/**
- * Created by chkui on 2017/6/19.
- * 基础工具模块
- */
-
-/**
- * 获取组件的显示名称
- * @param WrappedComponent 包装组件
- * @returns {*|string}
- */
 var getComponentName = exports.getComponentName = function getComponentName(WrappedComponent) {
     return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 };

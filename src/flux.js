@@ -2,6 +2,7 @@
  * Created by chkui on 2016/12/13.
  * 通用redux工具。
  */
+'use strict';
 import {createStore/*store创建器*/, combineReducers/*reducer合并工具*/, applyMiddleware/*中间渲染工具，用于支持ajax等异步渲染*/} from 'redux';
 const reduxObj = require('react-redux')
 import {isServerEvn} from './util'

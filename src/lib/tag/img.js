@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Created by chkui on 2017/5/27.
  */
@@ -10,3 +11,7 @@ import React from 'react'
 const Img = props =><img {...props}/>;
 
 export default Img
+
+
+
+

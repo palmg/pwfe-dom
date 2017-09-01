@@ -1,7 +1,7 @@
 /**
  * Created by chkui on 2017/5/27.
  */
-
+'use strict';
 import Icon from './lib/tag/icon'
 import DynaIcon from './lib/tag/dynaIcon'
 import Img from './lib/tag/img'

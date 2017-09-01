@@ -1,3 +1,6 @@
+/**
+ * Created by chkui on 2017/5/22.
+ */
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38,9 +41,6 @@ var net = function net(params) {
  * @param url 网络请求地址
  * @param query: 服务器调用的query admin?a=a&b=b等价于{a:'a',b:'b'}
  * @returns {network}
- */
-/**
- * Created by chkui on 2017/5/22.
  */
 var get = function get(url, query) {
     return net({

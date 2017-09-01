@@ -2,8 +2,7 @@
  * Created by chkui on 2017/6/19.
  * 基础工具模块
  */
-
-
+'use strict';
 /**
  * 获取组件的显示名称
  * @param WrappedComponent 包装组件
