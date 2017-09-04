@@ -1,6 +1,6 @@
 {
   "name": "pwfe-dom",
-  "version": "1.0.8",
+  "version": "1.0.8-beta1",
   "description": "palmg web front end dom",
   "main": "",
   "scripts": {
