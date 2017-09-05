@@ -26,9 +26,8 @@ var reduxObj = require('react-redux');
 
 var store = void 0,
     //本地存储store对象
-apply = void 0,
-    //中间件工具
-storeAsync = void 0; //store的异步处理工具
+apply = void 0; //中间件工具
+var storeAsync = new _util.asyncLoader(); //store的异步处理工具
 if (!(0, _util.isServerEvn)() && (0, _env.getFluxLogLevel)() === _env.FluxLogLevel.Detail) {
     //如果是在服务器端，不会输出详细的store变更信息
     var createLogger = require('redux-logger'),
@@ -44,14 +43,12 @@ if (!(0, _util.isServerEvn)() && (0, _env.getFluxLogLevel)() === _env.FluxLogLev
  * @param foo
  */
 var asyncRegister = function asyncRegister(foo) {
-    !storeAsync && (storeAsync = new _util.asyncLoader());
     storeAsync.register(foo);
 };
 /**
  * 异步执行
  */
 var asyncExecute = function asyncExecute() {
-    //!storeAsync && (storeAsync = new asyncLoader())
     storeAsync && storeAsync.onLoad(true);
 };
 

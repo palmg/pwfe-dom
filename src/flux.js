@@ -11,8 +11,8 @@ import {asyncLoader} from './util'
 import thunkMiddleware from 'redux-thunk';//中间渲染组件
 
 let store,//本地存储store对象
-    apply,//中间件工具
-    storeAsync //store的异步处理工具
+    apply//中间件工具
+const storeAsync = new asyncLoader() //store的异步处理工具
 if (!isServerEvn() && getFluxLogLevel() === FluxLogLevel.Detail) {//如果是在服务器端，不会输出详细的store变更信息
     const createLogger = require('redux-logger'),//日志工具
         loggerMiddleware = createLogger();//创建日志
@@ -26,14 +26,12 @@ if (!isServerEvn() && getFluxLogLevel() === FluxLogLevel.Detail) {//如果是在
  * @param foo
  */
 const asyncRegister = foo =>{
-    !storeAsync && (storeAsync = new asyncLoader())
     storeAsync.register(foo)
 }
 /**
  * 异步执行
  */
 const asyncExecute = () => {
-    //!storeAsync && (storeAsync = new asyncLoader())
     storeAsync && storeAsync.onLoad(true)
 }
 
