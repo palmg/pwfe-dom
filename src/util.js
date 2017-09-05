@@ -61,8 +61,8 @@ export class asyncLoader {
      * 加载完成后执行的方法，非外部接口
      */
     executeHandle(){
-        this.handleList.map(i=>i(this.result));
-        this.handleList = null;
+        this.handleList && this.handleList.map(i=>i(this.result));
+        this.handleList = null; //限定只能执行一次
     }
 }
 

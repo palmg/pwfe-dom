@@ -87,10 +87,10 @@ var asyncLoader = exports.asyncLoader = function () {
         value: function executeHandle() {
             var _this = this;
 
-            this.handleList.map(function (i) {
+            this.handleList && this.handleList.map(function (i) {
                 return i(_this.result);
             });
-            this.handleList = null;
+            this.handleList = null; //限定只能执行一次
         }
     }]);
 
