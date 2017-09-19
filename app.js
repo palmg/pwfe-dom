@@ -13,6 +13,8 @@ var _bundle = require('./bundle');
 
 var _bundle2 = _interopRequireDefault(_bundle);
 
+var _util = require('./util');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -31,18 +33,31 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var App = function App(props) {
     var init = props.init,
         routes = props.routes,
-        className = props.className;
+        className = props.className,
+        header = props.header,
+        children = props.children,
+        footer = props.footer;
+
 
     return _react2.default.createElement(
         'div',
         { className: className },
-        props.header,
-        props.children,
+        (0, _util.isElement)(header) ? header : function () {
+            var Header = header;
+            return _react2.default.createElement(Header, null);
+        }(),
+        (0, _util.isElement)(children) ? children : function () {
+            var Children = children;
+            return _react2.default.createElement(Children, null);
+        }(),
         routes.map(function (i) {
             return _react2.default.createElement(_router.Route, { key: i.id, exact: true, path: i.url,
                 component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component) });
         }),
-        props.footer
+        (0, _util.isElement)(footer) ? footer : function () {
+            var Footer = footer;
+            return _react2.default.createElement(Header, null);
+        }()
     );
 };
 

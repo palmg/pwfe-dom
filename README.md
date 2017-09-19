@@ -357,6 +357,7 @@ getComponentName | 获取react组件的名称。
 isServerEvn | 获取当前的运行环境是服务器端还是浏览器端。
 asyncLoader | 异步加载类。用于等待某一项任务完成，然后通知所有的处理器。
 safeGetValue | 从对象中安全获取属性。
+isElement | 判断当前内容是一个React的类还是一个元素(实例)。
 案例：
 ```JavaScript
 //import util from 'pwfe-dom/util' 全局引用

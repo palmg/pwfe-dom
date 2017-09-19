@@ -116,3 +116,12 @@ var safeGetValue = exports.safeGetValue = function safeGetValue(src, key) {
     } catch (e) {}
     return rlt;
 };
+
+/**
+ * 判断当前内容是一个React的类还是一个元素(实例)。类=Component,元素(实例)=<Component/>
+ * 当传入的参数el是一个未定义对象时（undefined）也认为是一个元素，因为React中undefined表示什么都不显示
+ * @param el 要判断的对象
+ */
+var isElement = exports.isElement = function isElement(el) {
+    return 'object' === (typeof el === 'undefined' ? 'undefined' : _typeof(el)) || 'undefined' === typeof el;
+};
