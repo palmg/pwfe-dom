@@ -11,9 +11,9 @@ var _dynaIcon = require('./lib/tag/dynaIcon');
 
 var _dynaIcon2 = _interopRequireDefault(_dynaIcon);
 
-var _img = require('./lib/tag/img');
+var _reactScrollOverImg = require('react-scroll-over-img');
 
-var _img2 = _interopRequireDefault(_img);
+var _reactScrollOverImg2 = _interopRequireDefault(_reactScrollOverImg);
 
 var _a = require('./lib/tag/a');
 
@@ -27,11 +27,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Tag = {
   /**
-   * 图片组件
-   * @param {string} props 可以设置任意图片属性
+   * 图片组件，支持滚入自动加载
+   * @param onOff: 图片延迟加载的开关，默认会使用全局的onOff配置参数
+   * @param loadSrc: 图片未滚入显示区域时异步加载图片地址,应该是一个很小切易于快速加载的图片，大小建议小于2KB，默认为一张空图片。
+   * @param loadClassName: 图片异步加载时的样式
+   * @param src: 图片滚入显示区域时显示的图片地址
+   * @param className: 图片默认样式，在加载时会和loadClass叠加
    * @constructor
    */
-  Img: _img2.default,
+  Img: _reactScrollOverImg2.default,
   /**
    * 设置当前的图标对象，当站内图标初始化完毕之后，需要调用这个方法来告知组件图标已经异步加载完成
    * @param img
