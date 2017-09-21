@@ -8,7 +8,7 @@ import entry from '../entry'
 import {net} from '../net'
 import {reRoute} from '../router'
 import {getStore, connect, dispatch, subscribe}from '../flux'
-import Tag from '../tag'
+import Tag from '../src/tag'
 import {res} from './res/res'
 const cn = require('classnames/bind').bind(require('./demo.scss'))
 
@@ -94,6 +94,9 @@ class Comp2Input extends React.Component {
             <div>
                 <input type="text" ref={ref => this.input = ref}/>
                 <button onClick={this.submitHandle}>触发Action</button>
+                <Tag.Img
+                    loadSrc="https://file.mahoooo.com/res/file/201709020151545ZDA0RZSDSS8Z4BL7FFBE2CA22070C17C5570BA9452E08FDF06D8BE@90w_1Q"
+                    src="https://file.mahoooo.com/res/file/201709020151545ZDA0RZSDSS8Z4BL7FFBE2CA22070C17C5570BA9452E08FDF06D8BE@90w_80Q" />
                 <Comp2Value />
             </div>
         )

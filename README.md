@@ -120,7 +120,7 @@ import Tag from 'pwfe-dom/tag'
 ```
 接口  | 说明
 ------ | ------
-all | Img组件支持所有`<img/>`源生属性和方法。
+all | Img组件支持所有`<img/>`源生属性和方法。参见：https://github.com/palmg/react-scroll-over-img#readme
 
 ### Icon
 `Icon`用于展示所有站内图标，它的作用是将资源文件和代码部分隔离开，然后异步加载，不影响业务执行。

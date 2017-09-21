@@ -4,14 +4,18 @@
 'use strict';
 import Icon from './lib/tag/icon'
 import DynaIcon from './lib/tag/dynaIcon'
-import Img from './lib/tag/img'
+import Img from 'react-scroll-over-img'
 import A from './lib/tag/a'
 import setIcon from './lib/tag/setIcon'
 
 const Tag = {
     /**
-     * 图片组件
-     * @param {string} props 可以设置任意图片属性
+     * 图片组件，支持滚入自动加载
+     * @param onOff: 图片延迟加载的开关，默认会使用全局的onOff配置参数
+     * @param loadSrc: 图片未滚入显示区域时异步加载图片地址,应该是一个很小切易于快速加载的图片，大小建议小于2KB，默认为一张空图片。
+     * @param loadClassName: 图片异步加载时的样式
+     * @param src: 图片滚入显示区域时显示的图片地址
+     * @param className: 图片默认样式，在加载时会和loadClass叠加
      * @constructor
      */
     Img,
