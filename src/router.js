@@ -8,6 +8,7 @@ import {isServerEvn, getComponentName} from './util'
 import {HistoryType, getHisType}from './env'
 import createBrowserHistory from 'history/createBrowserHistory'
 import createHashHistory from 'history/createHashHistory'
+import match from './lib/match'
 import {Router, Route, Link, Redirect, StaticRouter, withRouter} from 'react-router-dom'//路由
 const history = !isServerEvn() && (getHisType() === HistoryType.Browser ? createBrowserHistory() : createHashHistory());
 
@@ -72,4 +73,34 @@ const reRoute = () => {
     }
 };
 
-export {Route, Link, withRouter, reRoute, history, Redirect, StaticRouter, Router}
+/**
+ * 携带routes匹配的高阶组件，用于根据routes配置知道当前请求对应的route。
+ * 1）reRouteMatch可以组合了所有的reRoute属性值。所以需要reRoute的功能不必重复组合
+ * 2）将reRouteMatch和reRoute分离，主要是reRouteMatch进行正则运算较多，而不是所有组件都需要知道请求所属route
+ * @returns {*}
+ */
+const reRouteMatch = () =>{
+    return (Wrap) => {
+        class Wrapper extends React.Component {
+            constructor(...props) {
+                super(...props);
+            }
+            shouldComponentUpdate(nextProps, nextState) {
+                return this.props !== nextProps;
+            }
+            render() {
+                const originBrowser = this.props.browser,
+                    route = match(originBrowser),
+                    browser = Object.assign({}, originBrowser, {route});
+                const props = Object.assign({}, this.props);
+                props.browser = browser
+                return (<Wrap {...props} />)
+            }
+        }
+        const ReRouteMatch = reRoute()(Wrapper)
+        ReRouteMatch.displayName = `ReRouteMatch(${getComponentName(Wrap)})`;
+        return ReRouteMatch;
+    }
+}
+
+export {Route, Link, withRouter, reRoute, reRouteMatch, history, Redirect, StaticRouter, Router}

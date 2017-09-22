@@ -7,7 +7,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Router = exports.StaticRouter = exports.Redirect = exports.history = exports.reRoute = exports.withRouter = exports.Link = exports.Route = undefined;
+exports.Router = exports.StaticRouter = exports.Redirect = exports.history = exports.reRouteMatch = exports.reRoute = exports.withRouter = exports.Link = exports.Route = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -26,6 +26,10 @@ var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 var _createHashHistory = require('history/createHashHistory');
 
 var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
+
+var _match = require('./lib/match');
+
+var _match2 = _interopRequireDefault(_match);
 
 var _reactRouterDom = require('react-router-dom');
 
@@ -121,10 +125,60 @@ var reRoute = function reRoute() {
     };
 };
 
+/**
+ * 携带routes匹配的高阶组件，用于根据routes配置知道当前请求对应的route。
+ * 1）reRouteMatch可以组合了所有的reRoute属性值。所以需要reRoute的功能不必重复组合
+ * 2）将reRouteMatch和reRoute分离，主要是reRouteMatch进行正则运算较多，而不是所有组件都需要知道请求所属route
+ * @returns {*}
+ */
+var reRouteMatch = function reRouteMatch() {
+    return function (Wrap) {
+        var Wrapper = function (_React$Component2) {
+            _inherits(Wrapper, _React$Component2);
+
+            function Wrapper() {
+                var _ref2;
+
+                _classCallCheck(this, Wrapper);
+
+                for (var _len2 = arguments.length, props = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+                    props[_key2] = arguments[_key2];
+                }
+
+                return _possibleConstructorReturn(this, (_ref2 = Wrapper.__proto__ || Object.getPrototypeOf(Wrapper)).call.apply(_ref2, [this].concat(props)));
+            }
+
+            _createClass(Wrapper, [{
+                key: 'shouldComponentUpdate',
+                value: function shouldComponentUpdate(nextProps, nextState) {
+                    return this.props !== nextProps;
+                }
+            }, {
+                key: 'render',
+                value: function render() {
+                    var originBrowser = this.props.browser,
+                        route = (0, _match2.default)(originBrowser),
+                        browser = Object.assign({}, originBrowser, { route: route });
+                    var props = Object.assign({}, this.props);
+                    props.browser = browser;
+                    return _react2.default.createElement(Wrap, props);
+                }
+            }]);
+
+            return Wrapper;
+        }(_react2.default.Component);
+
+        var ReRouteMatch = reRoute()(Wrapper);
+        ReRouteMatch.displayName = 'ReRouteMatch(' + (0, _util.getComponentName)(Wrap) + ')';
+        return ReRouteMatch;
+    };
+};
+
 exports.Route = _reactRouterDom.Route;
 exports.Link = _reactRouterDom.Link;
 exports.withRouter = _reactRouterDom.withRouter;
 exports.reRoute = reRoute;
+exports.reRouteMatch = reRouteMatch;
 exports.history = history;
 exports.Redirect = _reactRouterDom.Redirect;
 exports.StaticRouter = _reactRouterDom.StaticRouter;

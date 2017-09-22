@@ -27,7 +27,7 @@ test("Tag.A Test", ()=> {
 
 test("Tag.Img Test", ()=> {
     const comp = renderer.create(
-        <Tag.Img src="file.icon"/>
+        <Tag.Img alt="测试图片" onOff={false} src="file.icon"/>
     )
 
     let tree = comp.toJSON();

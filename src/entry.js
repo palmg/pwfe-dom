@@ -6,6 +6,7 @@ import React from 'react'
 import {render} from 'react-dom';
 import {Provider} from 'react-redux'
 import {Router, history} from './router'
+import {set} from './lib/context'
 import {buildStore} from './flux'
 import DefApp from './app'
 /**
@@ -58,6 +59,7 @@ const entry = (options) => {
         serverParam = innerWindow.SERVER_PARAMS || {},
         initID = serverParam.initId || routes[0].id,
         App = app || DefApp
+    set('routes',routes)
     for (let i of routes) {
         if (i.id === initID) {
             i.component(comp=> {

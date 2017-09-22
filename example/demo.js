@@ -6,7 +6,7 @@ import React from 'react'
 import {Link} from '../router'
 import entry from '../entry'
 import {net} from '../net'
-import {reRoute} from '../router'
+import {reRoute, reRouteMatch} from '../src/router'
 import {getStore, connect, dispatch, subscribe}from '../flux'
 import Tag from '../src/tag'
 import {res} from './res/res'
@@ -75,8 +75,7 @@ const Comp1Next = reRoute()(props => {
 })
 
 //组件2,附带redux效果
-const Comp2 = props =>
-    <div><Comp2Input /></div>
+const Comp2 = reRouteMatch()(props => <div><Comp2Input {...props} /></div>)
 
 //触发redux数据更新的组件
 class Comp2Input extends React.Component {

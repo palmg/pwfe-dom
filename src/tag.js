@@ -4,7 +4,7 @@
 'use strict';
 import Icon from './lib/tag/icon'
 import DynaIcon from './lib/tag/dynaIcon'
-import Img from './lib/tag/img'
+import Img from 'react-scroll-over-img'
 import A from './lib/tag/a'
 import setIcon from './lib/tag/setIcon'
 

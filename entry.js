@@ -13,6 +13,8 @@ var _reactRedux = require('react-redux');
 
 var _router = require('./router');
 
+var _context = require('./lib/context');
+
 var _flux = require('./flux');
 
 var _app = require('./app');
@@ -77,6 +79,8 @@ var entry = function entry(options) {
         serverParam = innerWindow.SERVER_PARAMS || {},
         initID = serverParam.initId || routes[0].id,
         App = app || _app2.default;
+
+    (0, _context.set)('routes', routes);
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;

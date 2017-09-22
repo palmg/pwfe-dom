@@ -7,6 +7,15 @@ import {Route} from './router'
 import bundle from './bundle'
 import {isElement} from './util'
 
+const element = (el) => {
+    if (isElement(el)) {
+        return el
+    } else {
+        const El = el;
+        return (<El/>)
+    }
+}
+
 /**
  * 前后端同构的App入口。如果需要二次开发，请参照这个模板
  * @param {object} props{
@@ -22,23 +31,13 @@ import {isElement} from './util'
  */
 const App = props => {
     const {init, routes, className, header, children, footer} = props;
-
     return (
         <div className={className}>
-            {isElement(header) ? header : (() => {
-                const Header = header;
-                return <Header/>
-            })()}
-            {isElement(children) ? children : (() => {
-                const Children = children;
-                return <Children/>
-            })()}
+            {element(header)}
+            {element(children)}
             {routes.map(i => <Route key={i.id} exact path={i.url}
                                     component={bundle(init.id === i.id && init.comp, i.component)}/>)}
-            {isElement(footer) ? footer : (() => {
-                const Footer = footer;
-                return <Header/>
-            })()}
+            {element(footer)}
         </div>
     )
 }

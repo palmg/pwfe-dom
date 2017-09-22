@@ -12,5 +12,3 @@ const Img = props =><img {...props}/>;
 export default Img
 
 
-
-

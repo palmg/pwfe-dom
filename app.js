@@ -17,6 +17,15 @@ var _util = require('./util');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var element = function element(el) {
+    if ((0, _util.isElement)(el)) {
+        return el;
+    } else {
+        var El = el;
+        return _react2.default.createElement(El, null);
+    }
+};
+
 /**
  * 前后端同构的App入口。如果需要二次开发，请参照这个模板
  * @param {object} props{
@@ -38,26 +47,16 @@ var App = function App(props) {
         children = props.children,
         footer = props.footer;
 
-
     return _react2.default.createElement(
         'div',
         { className: className },
-        (0, _util.isElement)(header) ? header : function () {
-            var Header = header;
-            return _react2.default.createElement(Header, null);
-        }(),
-        (0, _util.isElement)(children) ? children : function () {
-            var Children = children;
-            return _react2.default.createElement(Children, null);
-        }(),
+        element(header),
+        element(children),
         routes.map(function (i) {
             return _react2.default.createElement(_router.Route, { key: i.id, exact: true, path: i.url,
                 component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component) });
         }),
-        (0, _util.isElement)(footer) ? footer : function () {
-            var Footer = footer;
-            return _react2.default.createElement(Header, null);
-        }()
+        element(footer)
     );
 };
 
