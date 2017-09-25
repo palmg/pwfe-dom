@@ -7,7 +7,7 @@ const context = {
 }
 
 export const set = (key, value) => {
-    !context[key] && context.warn(key, 'not exists! current context:', context)
+    'undefined' === typeof context[key] && console.warn(key, 'not exists! current context:', context)
     context[key] = value
 }
 
