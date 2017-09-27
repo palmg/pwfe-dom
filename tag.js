@@ -11,9 +11,9 @@ var _dynaIcon = require('./lib/tag/dynaIcon');
 
 var _dynaIcon2 = _interopRequireDefault(_dynaIcon);
 
-var _reactScrollOverImg = require('react-scroll-over-img');
+var _img = require('./lib/tag/img');
 
-var _reactScrollOverImg2 = _interopRequireDefault(_reactScrollOverImg);
+var _img2 = _interopRequireDefault(_img);
 
 var _a = require('./lib/tag/a');
 
@@ -35,7 +35,7 @@ var Tag = {
    * @param className: 图片默认样式，在加载时会和loadClass叠加
    * @constructor
    */
-  Img: _reactScrollOverImg2.default,
+  Img: _img2.default,
   /**
    * 设置当前的图标对象，当站内图标初始化完毕之后，需要调用这个方法来告知组件图标已经异步加载完成
    * @param img

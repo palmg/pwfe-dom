@@ -23,7 +23,6 @@ test("Tag.router reRoute", () => {
     expect(tree).toMatchSnapshot();
 })
 
-
 test("Tag.router reRouteMatch", () => {
     const InnerComp = props => {
         return (
