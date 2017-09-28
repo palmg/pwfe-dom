@@ -63,6 +63,7 @@ const entry = (options) => {
     for (let i of routes) {
         if (i.id === initID) {
             i.component(comp=> {
+                set('initRoute', i)
                 render(
                     <Provider store={store}>
                         <Router history={history}>

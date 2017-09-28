@@ -31,6 +31,8 @@ var _match = require('./lib/match');
 
 var _match2 = _interopRequireDefault(_match);
 
+var _context = require('./lib/context');
+
 var _reactRouterDom = require('react-router-dom');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -45,33 +47,40 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var history = !(0, _util.isServerEvn)() && ((0, _env.getHisType)() === _env.HistoryType.Browser ? (0, _createBrowserHistory2.default)() : (0, _createHashHistory2.default)());
 
 /**
- * 服务器控制类
- * @type {{local: ((p1:*)), forward: ((p1?:*)), back: (())}}
+ * 浏览器操作类
+ * @param path 匹配路径
+ * @param url 浏览器路径
+ * @constructor 构造器 new Browser(path, url)
  */
-var browser = {
-    /**
-     * 服务器跳转，使用该方法会导致服务器重加载并重新渲染页面。//TODO 暂时未实现
-     * @param url 要跳转的地址
-     */
-    local: function local(url) {
-        window.location.href = url;
-    },
-    /**
-     * 浏览器向前跳转，使用该方法时不会发生服务器请求，只会发生react组件替换。
-     * 1）若不传入url参数，则浏览器会发生前进一页的行为
-     * 2）若传入url参数，浏览器会自行跳转到对应url
-     * @param url
-     */
-    forward: function forward(url) {
-        url ? history.push(url) : history.goForward();
-    },
-    /**
-     * 浏览器回滚，不会发生服务器请求
-     */
-    back: function back() {
-        history.goBack();
-    }
+var Browser = function Browser(path, url) {
+    var _path = path,
+        _url = url;
+    this.path = function () {
+        return _path;
+    };
+    this.url = function () {
+        return _url;
+    };
 };
+Browser.prototype.local = function (url) {
+    window.location.href = url;
+};
+Browser.prototype.forward = function (url) {
+    url ? history.push(url) : history.goForward();
+};
+Browser.prototype.back = function () {
+    history.goBack();
+};
+Browser.prototype.isServerInitPath = function () {
+    var route = (0, _context.get)('initRoute');
+    return this.path() === route.url;
+};
+
+var MatchBrowser = function MatchBrowser(path, url, route) {
+    Browser.call(this, path, url);
+    this.route = route;
+};
+MatchBrowser.prototype = new Browser();
 
 /**
  * 浏览器重定向高阶组件，用于重定向跳转。
@@ -104,14 +113,7 @@ var reRoute = function reRoute() {
             }, {
                 key: 'render',
                 value: function render() {
-                    var _this2 = this;
-
-                    var _browser = Object.assign({}, { path: function path() {
-                            return _this2.props.match.path;
-                        } }, { url: function url() {
-                            return _this2.props.match.url;
-                        } }, browser);
-                    var props = Object.assign({}, this.props, { browser: _browser });
+                    var props = Object.assign({}, this.props, { browser: new Browser(this.props.match.path, this.props.match.url) });
                     return _react2.default.createElement(Wrap, props);
                 }
             }]);
@@ -156,11 +158,10 @@ var reRouteMatch = function reRouteMatch() {
             }, {
                 key: 'render',
                 value: function render() {
-                    var originBrowser = this.props.browser,
-                        route = (0, _match2.default)(originBrowser),
-                        browser = Object.assign({}, originBrowser, { route: route });
+                    var browser = this.props.browser,
+                        route = (0, _match2.default)(browser.path());
                     var props = Object.assign({}, this.props);
-                    props.browser = browser;
+                    props.browser = new MatchBrowser(browser.path(), browser.url(), route);
                     return _react2.default.createElement(Wrap, props);
                 }
             }]);

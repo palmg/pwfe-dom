@@ -2,8 +2,9 @@ import {get} from './context'
 
 const matchRoutes = [];
 let hasInit = false, //标识是否已经完成初始化
-    hasRoutes = false //标识是否存在routes列表
-const initMatchRoutes = (routes) => { //初始化路由匹配
+    //hasRoutes = false, //标识是否存在routes列表
+    routes = false
+/*const initMatchRoutes = (routes) => { //初始化路由匹配
         if (routes && 0 < routes.length) {
             for (let i of routes) {
                 const {url, id, module} = i, flag = ':', pos = url.indexOf(flag) - 1,
@@ -28,7 +29,16 @@ const initMatchRoutes = (routes) => { //初始化路由匹配
         //代码执行到这里证明没有匹配上
         console.warn("url match none!check you routes's config")
         return false
+    }*/
+
+const getMatchRoute = (path) => {
+    for(let route of routes){
+        if(route.url === path){
+            return route
+        }
     }
+    return false
+}
 
 /**
  * 获取与url匹配的route。
@@ -36,11 +46,12 @@ const initMatchRoutes = (routes) => { //初始化路由匹配
  * @param url
  * @returns {*}
  */
-export default (url) => { //根据传入的url从路由匹配中获取route数据
+export default (path) => { //根据传入的url从路由匹配中获取route数据
     !hasInit && (() => {
-        initMatchRoutes(get('routes'));
+        routes = get('routes')
         hasInit = true
     })()
-    return hasRoutes ? getMatchRoute() : false
+
+    return routes ? getMatchRoute(path) : false
 }
 

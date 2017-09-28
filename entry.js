@@ -86,11 +86,12 @@ var entry = function entry(options) {
     var _iteratorError = undefined;
 
     try {
-        for (var _iterator = routes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var _loop = function _loop() {
             var i = _step.value;
 
             if (i.id === initID) {
                 i.component(function (comp) {
+                    (0, _context.set)('initRoute', i);
                     (0, _reactDom.render)(_react2.default.createElement(
                         _reactRedux.Provider,
                         { store: store },
@@ -107,6 +108,10 @@ var entry = function entry(options) {
                     renderCb && renderCb();
                 });
             }
+        };
+
+        for (var _iterator = routes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            _loop();
         }
     } catch (err) {
         _didIteratorError = true;

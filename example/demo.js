@@ -3,12 +3,11 @@
  */
 
 import React from 'react'
-import {Link} from '../router'
 import entry from '../entry'
 import {net} from '../net'
-import {reRoute, reRouteMatch} from '../src/router'
+import {reRoute, reRouteMatch, Link} from '../router'
 import {getStore, connect, dispatch, subscribe}from '../flux'
-import Tag from '../src/tag'
+import Tag from '../tag'
 import {res} from './res/res'
 const cn = require('classnames/bind').bind(require('./demo.scss'))
 
@@ -52,6 +51,13 @@ const routes = [{
         cb(Comp2)
     }
 }, {
+    id: 'Comp2Ex',
+    url: '/comp2/:id',
+    name: '演示文稿2',
+    component: (cb) => {
+        cb(Comp2)
+    }
+}, {
     id: 'Click',
     url: '/click',
     name: '异步测试',
@@ -75,7 +81,8 @@ const Comp1Next = reRoute()(props => {
 })
 
 //组件2,附带redux效果
-const Comp2 = reRouteMatch()(props => <div><Comp2Input {...props} /></div>)
+const Comp2 = reRouteMatch()(
+    props => <div><Comp2Input {...props} /></div>)
 
 //触发redux数据更新的组件
 class Comp2Input extends React.Component {
@@ -93,10 +100,9 @@ class Comp2Input extends React.Component {
             <div>
                 <input type="text" ref={ref => this.input = ref}/>
                 <button onClick={this.submitHandle}>触发Action</button>
-                <Tag.Img
-                    loadSrc="https://file.mahoooo.com/res/file/201709020151545ZDA0RZSDSS8Z4BL7FFBE2CA22070C17C5570BA9452E08FDF06D8BE@90w_1Q"
-                    src="https://file.mahoooo.com/res/file/201709020151545ZDA0RZSDSS8Z4BL7FFBE2CA22070C17C5570BA9452E08FDF06D8BE@90w_80Q" />
+                <Tag.Img src="https://file.mahoooo.com/res/file/201709020151545ZDA0RZSDSS8Z4BL7FFBE2CA22070C17C5570BA9452E08FDF06D8BE@90w_80Q" />
                 <Comp2Value />
+                <div>is initPath: {this.props.browser.isServerInitPath()? 'YES':'NO'}</div>
             </div>
         )
     }

@@ -3,7 +3,8 @@
  * @type {{routes: Array}}
  */
 const context = {
-    routes:false
+    routes:false, //路由列表
+    initRoute:false //首屏路径
 }
 
 export const set = (key, value) => {
