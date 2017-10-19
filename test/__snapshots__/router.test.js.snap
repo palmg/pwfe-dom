@@ -3,33 +3,33 @@
 exports[`Tag.router reRoute 1`] = `
 <div>
   browser.local:
-  function local(url) {
-          window.location.href = url;
-      }
+  function (url) {
+      window.location.href = url;
+  }
   browser.forward:
-  function forward(url) {
-          url ? history.push(url) : history.goForward();
-      }
+  function (url) {
+      url ? history.push(url) : history.goForward();
+  }
   browser.back:
-  function back() {
-          history.goBack();
-      }
+  function () {
+      history.goBack();
+  }
 </div>
 `;
 
 exports[`Tag.router reRouteMatch 1`] = `
 <div>
   browser.local:
-  function local(url) {
-          window.location.href = url;
-      }
+  function (url) {
+      window.location.href = url;
+  }
   browser.forward:
-  function forward(url) {
-          url ? history.push(url) : history.goForward();
-      }
+  function (url) {
+      url ? history.push(url) : history.goForward();
+  }
   browser.back:
-  function back() {
-          history.goBack();
-      }
+  function () {
+      history.goBack();
+  }
 </div>
 `;
