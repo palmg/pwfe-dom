@@ -5,6 +5,8 @@
 import React from 'react'
 import {reRoute} from '../../router'
 
+const outProps = ['match','location','history','staticContext','browser','server']
+
 /**
  *  内置A标签。
  *  1）标签提供服务器跳转和本地跳转2种模式。通过server参数配置。
@@ -31,7 +33,7 @@ const A = reRoute()(class extends React.Component {
         } else {
             props.onClick = this.hrefHandle
         }
-        delete props.server
+        outProps.forEach(i=>delete props[i])
     }
 
     render() {
