@@ -71,6 +71,10 @@ Browser.prototype.forward = function (url) {
 Browser.prototype.back = function () {
     history.goBack();
 };
+/**
+ * with the pwfe-server
+ * @returns {boolean}
+ */
 Browser.prototype.isServerInitPath = function () {
     var route = (0, _context.get)('initRoute');
     return this.path() === route.url;
