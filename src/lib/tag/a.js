@@ -36,7 +36,7 @@ const A = reRoute()(class extends React.Component {
 
     render() {
         const props = Object.assign({}, this.props)
-        check(props)
+        this.checkHref(props)
 
         return (
             <a {...props}>{this.props.children}</a>
