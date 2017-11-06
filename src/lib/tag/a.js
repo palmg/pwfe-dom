@@ -13,7 +13,7 @@ import {reRoute} from '../../router'
  *      {boolean} server:是否经过服务器跳转，默认为false。
  *  }
  */
-const A = reRoute(class extends React.Component {
+const A = reRoute()(class extends React.Component {
     constructor(...props) {
         super(...props);
         this.hrefHandle = this.hrefHandle.bind(this);
