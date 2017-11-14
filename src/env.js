@@ -42,7 +42,7 @@ export const FluxLogLevel = {
 }
 
 /**
- * 获取redux的日志输出等级，可以通过DefinePlugin.__FluxLogLevel设定值，取值[Hash|Browser],
+ * 获取redux的日志输出等级，可以通过DefinePlugin.__FluxLogLevel设定值，取值[None|Detail],
  * 定义方式：
  * {
  *    __FluxLogLevel:JSON.stringify('Detail')或"'Detail'"
