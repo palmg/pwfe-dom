@@ -3,7 +3,7 @@
  */
 'use strict';
 import React from 'react'
-import {Route} from './router'
+import {Route, Switch} from './router'
 import bundle from './bundle'
 import {isElement} from './util'
 
@@ -35,8 +35,20 @@ const App = props => {
         <div className={className}>
             {element(header)}
             {element(children)}
-            {routes.map(i => <Route key={i.id} exact path={i.url}
-                                    component={bundle(init.id === i.id && init.comp, i.component)}/>)}
+            <Switch>
+                {routes.map(i => {
+                    const params = i.url ? {
+                        key: i.id,
+                        component: bundle(init.id === i.id && init.comp, i.component),
+                        exact: true,
+                        path: i.url
+                    } : {
+                        key: i.id,
+                        component: bundle(init.id === i.id && init.comp, i.component)
+                    }
+                    return (<Route {...params} />)
+                })}
+            </Switch>
             {element(footer)}
         </div>
     )

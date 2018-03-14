@@ -43,7 +43,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *-----------------------------------------------------------------------------------------------------------------
  *[{
     id: 'comp1', //页面id，在列表中唯一
-    url: '/', //页面对应的URL
+    url: '/', //页面对应的URL //如果不提供url，则视为全匹配路径，一般用于404页面
     name: '演示文稿', //页面名称，会渲染到title媒体属性中
     component: (cb)=> { //加载组件的回调
         //after get component

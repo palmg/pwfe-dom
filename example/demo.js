@@ -64,6 +64,12 @@ const routes = [{
     component: (cb) => {
         cb(Click)
     }
+},{
+    id: 'error',
+    name: '404页面',
+    component: (cb) => {
+        cb(Error)
+    }
 }]
 
 //组件1
@@ -141,6 +147,8 @@ class Click extends React.Component {
         )
     }
 }
+
+const Error = props => (<div>404</div>)
 
 entry({
     reducer: {reducer},

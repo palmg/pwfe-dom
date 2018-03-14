@@ -10,7 +10,7 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import createHashHistory from 'history/createHashHistory'
 import match from './lib/match'
 import {get} from './lib/context'
-import {Router, Route, Link, Redirect, StaticRouter, withRouter} from 'react-router-dom'//路由
+import {Router, Route, Link, Redirect, Switch, StaticRouter, withRouter} from 'react-router-dom'//路由
 const history = !isServerEvn() && (getHisType() === HistoryType.Browser ? createBrowserHistory() : createHashHistory());
 
 /**
@@ -116,4 +116,4 @@ const reRouteMatch = () => {
     }
 }
 
-export {Route, Link, withRouter, reRoute, reRouteMatch, history, Redirect, StaticRouter, Router}
+export {Route, Link, Switch, withRouter, reRoute, reRouteMatch, history, Redirect, StaticRouter, Router}
