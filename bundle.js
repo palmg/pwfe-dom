@@ -53,6 +53,12 @@ var bundle = function bundle(initComponent, getComponent) {
                 });
             }
         }, {
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+                console.log('Mount');
+                0 !== window.scrollY && window.scrollTo(0, 0);
+            }
+        }, {
             key: 'componentWillMount',
             value: function componentWillMount() {
                 !this.state.Comp && getComponent(this.async);

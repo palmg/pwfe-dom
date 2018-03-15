@@ -59,22 +59,18 @@ var App = function App(props) {
         _react2.default.createElement(
             _router.Switch,
             null,
-            _react2.default.createElement(
-                _scrollToTop2.default,
-                null,
-                routes.map(function (i) {
-                    var params = i.url ? {
-                        key: i.id,
-                        component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component),
-                        exact: true,
-                        path: i.url
-                    } : {
-                        key: i.id,
-                        component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component)
-                    };
-                    return _react2.default.createElement(_router.Route, params);
-                })
-            )
+            routes.map(function (i) {
+                var params = i.url ? {
+                    key: i.id,
+                    component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component),
+                    exact: true,
+                    path: i.url
+                } : {
+                    key: i.id,
+                    component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component)
+                };
+                return _react2.default.createElement(_router.Route, params);
+            })
         ),
         element(footer)
     );

@@ -25,6 +25,11 @@ const bundle = (initComponent, getComponent)=> {
             })
         }
 
+        componentDidMount() {
+            console.log('Mount');
+            0 !== window.scrollY && window.scrollTo(0, 0)
+        }
+
         componentWillMount() {
             !this.state.Comp && getComponent(this.async)
         }
