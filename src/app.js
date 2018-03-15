@@ -3,6 +3,7 @@
  */
 'use strict';
 import React from 'react'
+import ScrollToTop from './lib/app/scrollToTop'
 import {Route, Switch} from './router'
 import bundle from './bundle'
 import {isElement} from './util'
@@ -36,6 +37,7 @@ const App = props => {
             {element(header)}
             {element(children)}
             <Switch>
+                <ScrollToTop>
                 {routes.map(i => {
                     const params = i.url ? {
                         key: i.id,
@@ -48,6 +50,7 @@ const App = props => {
                     }
                     return (<Route {...params} />)
                 })}
+                </ScrollToTop>
             </Switch>
             {element(footer)}
         </div>

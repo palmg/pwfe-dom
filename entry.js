@@ -21,6 +21,10 @@ var _app = require('./app');
 
 var _app2 = _interopRequireDefault(_app);
 
+var _scrollToTop = require('./lib/app/scrollToTop');
+
+var _scrollToTop2 = _interopRequireDefault(_scrollToTop);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -100,7 +104,8 @@ var entry = function entry(options) {
                             { history: _router.history },
                             _react2.default.createElement(
                                 App,
-                                { className: className, init: { comp: comp, id: initID }, routes: routes, header: header, footer: footer },
+                                { className: className, init: { comp: comp, id: initID }, routes: routes, header: header,
+                                    footer: footer },
                                 options.children
                             )
                         )

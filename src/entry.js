@@ -9,6 +9,8 @@ import {Router, history} from './router'
 import {set} from './lib/context'
 import {buildStore} from './flux'
 import DefApp from './app'
+import ScrollToTop from './lib/app/scrollToTop'
+
 /**
  * 单页面前端基础入口组件，提供整合pwfe-server的入口支持。
  * 1）必须使用已定义的前后端通用标准页面模板。必须包含title、REDUX_STATE、SERVER_PARAMS模板参数
@@ -59,15 +61,16 @@ const entry = (options) => {
         serverParam = innerWindow.SERVER_PARAMS || {},
         initID = serverParam.initId || routes[0].id,
         App = app || DefApp
-    set('routes',routes)
+    set('routes', routes)
     for (let i of routes) {
         if (i.id === initID) {
-            i.component(comp=> {
+            i.component(comp => {
                 set('initRoute', i)
                 render(
                     <Provider store={store}>
                         <Router history={history}>
-                            <App className={className} init={{comp, id: initID}} routes={routes} header={header} footer={footer}>
+                            <App className={className} init={{comp, id: initID}} routes={routes} header={header}
+                                 footer={footer}>
                                 {options.children}
                             </App>
                         </Router>

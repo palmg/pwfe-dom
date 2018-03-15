@@ -7,6 +7,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _scrollToTop = require('./lib/app/scrollToTop');
+
+var _scrollToTop2 = _interopRequireDefault(_scrollToTop);
+
 var _router = require('./router');
 
 var _bundle = require('./bundle');
@@ -55,18 +59,22 @@ var App = function App(props) {
         _react2.default.createElement(
             _router.Switch,
             null,
-            routes.map(function (i) {
-                var params = i.url ? {
-                    key: i.id,
-                    component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component),
-                    exact: true,
-                    path: i.url
-                } : {
-                    key: i.id,
-                    component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component)
-                };
-                return _react2.default.createElement(_router.Route, params);
-            })
+            _react2.default.createElement(
+                _scrollToTop2.default,
+                null,
+                routes.map(function (i) {
+                    var params = i.url ? {
+                        key: i.id,
+                        component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component),
+                        exact: true,
+                        path: i.url
+                    } : {
+                        key: i.id,
+                        component: (0, _bundle2.default)(init.id === i.id && init.comp, i.component)
+                    };
+                    return _react2.default.createElement(_router.Route, params);
+                })
+            )
         ),
         element(footer)
     );
