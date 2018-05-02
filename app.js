@@ -53,7 +53,7 @@ var App = function App(props) {
 
     return _react2.default.createElement(
         'div',
-        { className: className },
+        { id: 'pwfe-app-root', className: className },
         element(header),
         element(children),
         _react2.default.createElement(

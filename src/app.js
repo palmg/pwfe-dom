@@ -33,7 +33,7 @@ const element = (el) => {
 const App = props => {
     const {init, routes, className, header, children, footer} = props;
     return (
-        <div className={className}>
+        <div id="pwfe-app-root" className={className}>
             {element(header)}
             {element(children)}
             <Switch>
